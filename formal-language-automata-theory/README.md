@@ -1,5 +1,5 @@
 # Formal Language and Automata Theory (IT404)
-Some basic programs on Formal Language and Automata Theory written in C, as part of 4th Semester BTech Formal Language and Automata Theory course.
+Basic programs on Formal Language and Automata Theory written in C.
 
 - Sequence Detector
 - Grammar to Language
