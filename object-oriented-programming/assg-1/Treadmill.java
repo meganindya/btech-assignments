@@ -1,6 +1,6 @@
 // Meganindya@Mega328p
 
-import bin_q.*;
+import bin.*;
 import static java.lang.System.*;
 
 class Treadmill {
