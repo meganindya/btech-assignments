@@ -1,5 +1,5 @@
 # Data Structures (IT351)
-A small repository of some starter programs on Data Structures and Algorithms written in C.
+Starter programs on Data Structures and Algorithms written in C.
 
 ### Array
 - 2D Array Insertion, Deletion, Display
