@@ -1,5 +1,4 @@
 ## Question
-
 Write a program to add two arrays. The addition should be performed by calling a function from a dyanmic linked library. [ use dlopen(), dlsym() and dlclose() ]
 
 #### Compilation
