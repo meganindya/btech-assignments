@@ -8,5 +8,5 @@
 4. Try filling the following figures using OpenGL tools.
 
 #### Figures
-![Horse][figure-1.png?raw=true "Horse"]
-![Letter][figure-2.png?raw=true "Letter"]
+![Horse](figure-1.png?raw=true "Horse")<br/>
+![Letter](figure-2.png?raw=true "Letter")
