@@ -1,5 +1,5 @@
-# BTech lab Assignments
-A repository of my BTech lab assignments for papers:
+# BTech Assignments
+A repository of my BTech assignments for papers:
 * IT351:   Data Structures (C)
 * IT404:   Formal Language and Automata Theory (C)
 * IT453:   Computer Graphics (C)
