@@ -1,3 +1,5 @@
+package bin;
+
 public class Q5 {
     public static void main(String args[]) {
         U ob = new U();

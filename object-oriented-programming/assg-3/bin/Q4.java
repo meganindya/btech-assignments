@@ -1,3 +1,5 @@
+package bin;
+
 import static java.lang.System.*;
 
 public class Q4 {
