@@ -5,7 +5,7 @@ public class Q1 {
     public static void main(String args[]) {
         // anonymous subclass of abstact class MatObject
         MatObject ob = new MatObject() {};
-        ob.instantiation();
+        ob.instantiate();
     }
 }
 
@@ -22,7 +22,7 @@ abstract class MatObject implements Material {
 
     // instantiates subclasses which however,
     // still extend this class
-    public void instantiation() {
+    public void instantiate() {
         Ball ball = new Ball(matBall);
         ball.display();
 
