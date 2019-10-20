@@ -1,4 +1,6 @@
-# Questions
+# Assignment 4: Exception Handling and Packages
+
+## Questions
 
 1. Consider a class that represents an account in a bank. Let the minimum balance for the account be ₹1000. Write a program that throws an exception when a withdrawal results in the balance less than ₹1000. Generate some accounts with random balance amount in each account to solve the problem.
 

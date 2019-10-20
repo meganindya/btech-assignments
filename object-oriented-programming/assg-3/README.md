@@ -1,4 +1,6 @@
-# Questions
+# Assignment 3: Interfaces
+
+## Questions
 
 1. Interface **Material** defines a set of string constants for various materials. Abstract class **MatObject** has one instance variable named **material** of type String. This records the material used to construct the object. Classes **Ball**, **Coin**, and **Ring** extend **MatObject**. The constructors initialize the **material** variable. Class **MatObject** instantiates these classes. A different material is passed to each constructor. The material of each object is displayed.
 
