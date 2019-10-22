@@ -4,7 +4,7 @@
 
 1. Consider a class that represents an account in a bank. Let the minimum balance for the account be ₹1000. Write a program that throws an exception when a withdrawal results in the balance less than ₹1000. Generate some accounts with random balance amount in each account to solve the problem.
 
-2. Write a program that takes twwwos and a string as command line argument and prints the reverse of the substring of the string specified by the two numbers. The program should handle all possible exceptions that may arise due to bad inputs.
+2. Write a program that takes two numbers and a string as command line arguments and prints the reverse of the substring of the string specified by the two numbers. The program should handle all possible exceptions that may arise due to bad inputs.
 
 3. Write a program to handle divide by zero exception.
 
