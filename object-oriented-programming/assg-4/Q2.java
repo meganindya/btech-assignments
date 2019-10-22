@@ -26,7 +26,7 @@ class Q2 implements ErrorMsgs {
                     m = Integer.parseInt(args[1]);
 
                     if (m < 0 || m >= length)
-                        throw new Exception(err4);
+                        throw new IllegalArgumentException(err4);
                 }
                 catch (Exception e) {
                     if (e instanceof NumberFormatException)
@@ -41,7 +41,7 @@ class Q2 implements ErrorMsgs {
                     n = Integer.parseInt(args[2]);
 
                     if (n < 1 || n > length)
-                        throw new Exception(err5);
+                        throw new IllegalArgumentException(err5);
                 }
                 catch (Exception e) {
                     if (e instanceof NumberFormatException)
