@@ -6,6 +6,7 @@ class Q2 implements ErrorMsgs {
         int m = 0, n = 0;
 
         boolean erroneous = false;
+        // lambda function for functional interface
         Error msg = (boolean e, String s) -> {
             if (!e)
                 out.print("Error:");
@@ -83,6 +84,7 @@ interface ErrorMsgs {
     public static final String err7 = "Empty substring";
 }
 
+// functional interface
 interface Error {
     public void getError(boolean e, String s);
 }
