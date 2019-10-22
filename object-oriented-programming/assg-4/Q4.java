@@ -9,7 +9,7 @@ class Q4 {
 
         out.println("n = " + n);
         
-        out.print("d in [ ");
+        out.print("d in [  ");
         for (int i : a)   out.print(i + " ");
         out.println("]");
 
