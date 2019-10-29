@@ -1,6 +1,8 @@
+package programs;
+
 import static java.lang.System.*;
 
-class Q2 implements ErrorMsgs {
+public class Q2 implements ErrorMsgs {
     public static void main(String args[]) {
         String str;
         int m = 0, n = 0;

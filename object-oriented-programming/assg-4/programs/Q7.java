@@ -1,7 +1,9 @@
+package programs;
+
 import static java.lang.System.*;
 import java.util.*;
 
-class Q7 {
+public class Q7 {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
 

@@ -1,12 +1,14 @@
-import packQ8.circle.*;
-import packQ8.square.*;
-import packQ8.triangle.*;
+package programs.q8;
+
+import programs.q8.pack8.circle.*;
+import programs.q8.pack8.square.*;
+import programs.q8.pack8.triangle.*;
 
 import static java.lang.System.*;
 
 public class Q8 {
     public static void main(String args[]) {
-        double radius = packQ8.circle.Dim.radius;
+        double radius = programs.q8.pack8.circle.Dim.radius;
         Circle cir = new Circle(radius);
         double areaC = cir.area();
 
@@ -15,7 +17,7 @@ public class Q8 {
 
 
 
-        double side = packQ8.square.Dim.side;
+        double side = programs.q8.pack8.square.Dim.side;
         Square sqr = new Square(side);
         double areaS = sqr.area();
 
@@ -24,8 +26,8 @@ public class Q8 {
 
 
 
-        double height = packQ8.triangle.Dim.height;
-        double base = packQ8.triangle.Dim.base;
+        double height = programs.q8.pack8.triangle.Dim.height;
+        double base = programs.q8.pack8.triangle.Dim.base;
         Triangle trl = new Triangle(height, base);
         double areaT = trl.area();
 

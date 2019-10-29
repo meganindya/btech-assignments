@@ -1,4 +1,4 @@
-package packQ8.circle;
+package programs.q8.pack8.circle;
 
 public class Circle {
     private double radius;

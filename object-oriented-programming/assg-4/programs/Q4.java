@@ -1,6 +1,8 @@
+package programs;
+
 import static java.lang.System.*;
 
-class Q4 {
+public class Q4 {
     public static void main(String args[]) {
         int n = 0xFF, c, d;
         int a[] = {2, 3, 0, 5, 0};

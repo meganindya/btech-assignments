@@ -1,4 +1,4 @@
-package packQ8.square;
+package programs.q8.pack8.square;
 
 public class Square {
     private double side;

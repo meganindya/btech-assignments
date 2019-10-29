@@ -1,3 +1,5 @@
+package programs;
+
 import static java.lang.System.*;
 
 class Q1 {

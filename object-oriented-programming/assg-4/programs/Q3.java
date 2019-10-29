@@ -1,4 +1,6 @@
-class Q3 {
+package programs;
+
+public class Q3 {
     public static void main(String args[]) {
         int a = 7, b = 3, c = 0;
 

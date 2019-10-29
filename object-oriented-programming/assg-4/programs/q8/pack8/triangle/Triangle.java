@@ -1,4 +1,4 @@
-package packQ8.triangle;
+package programs.q8.pack8.triangle;
 
 public class Triangle {
     private double height;

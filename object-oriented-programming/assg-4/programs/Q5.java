@@ -1,6 +1,8 @@
+package programs;
+
 import java.io.*;
 
-class Q5 {
+public class Q5 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
