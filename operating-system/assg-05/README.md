@@ -1,4 +1,5 @@
-## Questions
+# Questions
+
 1. Create 2 modified versions of your solution to Question 1 from Assignment 4.
     a. Pin both threads to a single core.
     b. Pin both threads to different cores.
