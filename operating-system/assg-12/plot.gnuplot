@@ -3,6 +3,6 @@ set output 'memory.png'
 set palette rgbformulae 33, 13, 10
 set pm3d
 set zlabel 'throughput'
-set ylabel 'stride (x8 bytes)'
-set xlabel 'size (bytes)'
-splot 'results.csv' matrix with lines
+set ylabel 'size (bytes)'
+set xlabel 'stride (x8 bytes)'
+splot 'results.dat' matrix rowheaders columnheaders with lines
