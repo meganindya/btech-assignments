@@ -7,3 +7,4 @@ A repository of my BTech assignments for papers:
 * IT455:   Modelling and Simulation (MATLAB)
 * IT552:   Operating System (C)
 * IT531/1: Object Oriented Programming (Java)
+* IT652:   Compiler Design (C)
