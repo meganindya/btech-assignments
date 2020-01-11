@@ -6,4 +6,4 @@ Invalid
 Float
 Invalid
 Invalid
-Integer
+Invalid
