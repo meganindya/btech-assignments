@@ -19,12 +19,24 @@ int main(int argc, char *argv[]) {
 
     // loop for characters until END OF FILE
     while ((c = fgetc(fi)) != EOF) {
+        /*
+        state 0: initial state (end state)
+        state 1: one / has been encountered
+        state 2: // has been encountered
+        state 3: /* has been encountered
+        state 4: * has been encountered after n number of
+                 characters have followed /*
+        state 5: // ' or " has been encountered
+        */
+
         switch (state) {
             // initial state
             case 0:
                 if (c == '/')
                     state = 1;
-            break;
+                else if (c == '\'' || c == '\"')
+                    state = 5;
+            break;                  // else no state change
 
             // one / has been encountered
             case 1:
@@ -43,7 +55,7 @@ int main(int argc, char *argv[]) {
                     fprintf(fo, "%s\n\n", comment);
                     state = i = 0;
                 }
-                else
+                else                  // no state change
                     comment[i++] = c;
             break;
 
@@ -53,7 +65,7 @@ int main(int argc, char *argv[]) {
                     comment[i++] = '*';
                     state = 4;
                 }
-                else
+                else                  // no state change
                     comment[i++] = c;
             break;
 
@@ -70,6 +82,12 @@ int main(int argc, char *argv[]) {
                     state = 3;
                 }
             break;
+
+            // ' or " has been encountered
+            case 5:
+                if (c == '\'' || c == '\"')
+                    state = 0;
+            break;                  // else no state change
         }
     }
 
