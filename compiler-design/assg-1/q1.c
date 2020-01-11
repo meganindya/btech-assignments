@@ -1,3 +1,19 @@
+/*
+Valid Integers:
+  begins with 1 - 9, followed by any number
+    of digits between 0 - 9
+Valid Floating Point numbers:
+  begins with 0., followed by any number of
+    digits between 0 - 9
+  begins with ., followed by any number of
+    digits between 0 - 9
+  begins with 1 - 9, followed by any number
+    of digits between 0 - 9, followed by .,
+    followed any whole number of digits
+    between 0 - 9
+*/
+
+
 #include <stdio.h>
 #include <string.h>
 
