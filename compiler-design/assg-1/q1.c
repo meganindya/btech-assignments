@@ -22,10 +22,12 @@ int getType(int, char *);
 
 
 int main(int argc, char *argv[]) {
-    FILE *fi = fopen("input-1.txt", "r");
-    FILE *fo = fopen("output-1.txt", "w");
-    if (fi == NULL) goto exit;
+    FILE *fi = fopen("input-1.txt", "r");   // input file
+    FILE *fo = fopen("output-1.txt", "w");  // output file
+    if (fi == NULL) 
+        goto exit;                  // exit if no input file
 
+    // run until input strings exist
     while (!feof(fi)) {
         char string[64];
         fscanf(fi, "%s", string);
@@ -45,13 +47,29 @@ int main(int argc, char *argv[]) {
 }
 
 
+// function to determine whether passed string is
+// an Integer, Float, or Invalid
 int getType(int len, char *s) {
     int state = 0, p = 0;
 
+    /*
+    state 0: initial state
+    state 1: first digit is between 1 - 9
+             (end state)
+    state 2: decimal has been encountered
+    state 3: there is atleast one digit after decimal
+             (end state)
+    state 4: first digit is 0
+    state 5: string isn't an integer or float
+             (dead state)
+    */
+
+    // loop until end of string or dead state reached
     while (state != 5 && p < len) {
         char c = *(s + p);
 
         switch (state) {
+            // initial state
             case 0:
                 if (c == '0')
                     state = 4;
@@ -59,11 +77,11 @@ int getType(int len, char *s) {
                     state = 1;
                 else if (c == '.')
                     state = 2;
-                else {
+                else
                     state = 5;
-                }
             break;
 
+            // first digit is between 1 - 9
             case 1:
                 if (c >= '0' && c <= '9')
                     state = 1;
@@ -73,6 +91,7 @@ int getType(int len, char *s) {
                     state = 5;
             break;
 
+            // decimal has been encountered
             case 2:
                 if (c >= '0' && c <= '9')
                     state = 3;
@@ -80,6 +99,7 @@ int getType(int len, char *s) {
                     state = 5;
             break;
 
+            // there is atleast one digit after decimal
             case 3:
                 if (c >= '0' && c <= '9')
                     state = 3;
@@ -87,6 +107,7 @@ int getType(int len, char *s) {
                     state = 5;
             break;
 
+            // first digit is 0
             case 4:
                 if (c == '.')
                     state = 2;
