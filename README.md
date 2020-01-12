@@ -8,4 +8,5 @@ A repository of my BTech assignments for papers:
 * IT552: &nbsp;&nbsp;&nbsp;&nbsp; Operating System (C)
 * IT553: &nbsp;&nbsp;&nbsp;&nbsp; Database Management System (SQL)
 * IT531/1:                 &nbsp; Object Oriented Programming (Java)
+* IT651: &nbsp;&nbsp;&nbsp;&nbsp; Design & Analysis of Algorithms (C)
 * IT652: &nbsp;&nbsp;&nbsp;&nbsp; Compiler Design (C)
