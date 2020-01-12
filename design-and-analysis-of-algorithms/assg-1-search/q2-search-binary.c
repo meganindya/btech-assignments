@@ -37,8 +37,8 @@ int main(int argc, char *argv) {
 		fprintf(fp, "%ld,%d\n", n, getSearchBinaryTime(n));
 	} while((n <<= 1) < 1000000000);
 	
-	
 	fclose(fp);
+	system("./q2-plot.sh");
 	
 	return 0;
 }

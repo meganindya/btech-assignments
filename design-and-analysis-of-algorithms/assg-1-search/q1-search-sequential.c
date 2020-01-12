@@ -39,8 +39,8 @@ int main(int argc, char *argv) {
 		fprintf(fp, "%ld,%ld\n", n, getSearchSequentialTime(n));
 	} while((n <<= 1) < 1000000000);
 	
-	
 	fclose(fp);
+	system("./q1-plot.sh");
 	
 	return 0;
 }
