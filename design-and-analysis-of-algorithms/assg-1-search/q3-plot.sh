@@ -1,5 +1,5 @@
 #!/usr/bin/gnuplot -persist
-set title "Binary Search" font "Helvetica Bold, 14"
+set title "Fibonacci Search" font "Helvetica Bold, 14"
 set xlabel "array size (n)"
 set ylabel "iterations"
 set grid
