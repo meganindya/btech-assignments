@@ -4,15 +4,15 @@
 
 
 int main(int argc, char *argv) {
-	FILE *fp = fopen("q1.csv", "w");
+	FILE *fp = fopen("q1-data.csv", "w");
 	long int n = 10000, ti;
 	clock_t start, end;
 	
-	int *arr = (int *) malloc(sizeof(int) * 100000000), key = -1;
-		for (int i = 0; i < 100000000; i++)
-			arr[i] = i;
-
 	while (n <= 100000000) {
+		int *arr = (int *) malloc(sizeof(int) * n), key = -1;
+		for (int i = 0; i < n; i++)
+			arr[i] = i;
+		
 		start = clock();
 
 		//============================
