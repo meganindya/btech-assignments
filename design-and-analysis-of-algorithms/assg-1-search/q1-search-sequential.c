@@ -43,7 +43,7 @@ int main(int argc, char *argv) {
     } while((n <<= 1) < 1000000000);
 
     fclose(fp);
-    system("./q1-plot.sh"); // calls Bash script
+    system("./q1-plot.sh"); // calls Bash script for plotting
     
     return 0;
 }
