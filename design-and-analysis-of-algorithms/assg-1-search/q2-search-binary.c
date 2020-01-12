@@ -7,11 +7,11 @@ int getSearchBinaryTime(int n) {
 		for (long int i = 0; i < n; i++)
 			arr[i] = i;
 
+	//============================
 	int key = -1, iterations = 0;
 	
 	int low = 0, high = n - 1;
 
-	//============================
 	while (high >= low) {
 		long int mid = low + ((high - low) / 2);
 		
