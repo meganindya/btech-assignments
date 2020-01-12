@@ -5,16 +5,14 @@
 
 int main(int argc, char *argv) {
 	FILE *fp = fopen("q1.csv", "w");
-	long long int n = 10000, ti;
+	long int n = 10000, ti;
 	clock_t start, end;
 	
-	
-	while (n <= 1000000) {
-		int arr[n], key = n;
-		for (int i = 0; i < n; i++)
+	int *arr = (int *) malloc(sizeof(int) * 100000000), key = -1;
+		for (int i = 0; i < 100000000; i++)
 			arr[i] = i;
-		
 
+	while (n <= 100000000) {
 		start = clock();
 
 		//============================
@@ -35,10 +33,10 @@ int main(int argc, char *argv) {
 		
 		double time = ((double) (end - start)) / CLOCKS_PER_SEC;
 		ti = time * 1000000000;
-		fprintf(fp, "%lld,%lld\n", n, ti);
+		fprintf(fp, "%ld,%ld\n", n, ti);
 
 
-		n = n + 10000;
+		n <<= 1;
 	}
 	
 	
