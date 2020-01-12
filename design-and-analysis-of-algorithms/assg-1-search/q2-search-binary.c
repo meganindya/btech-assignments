@@ -3,13 +3,13 @@
 
 
 int getSearchBinaryTime(int n) {
-	long int *arr = malloc(sizeof(long int) * n);
+	int *arr = malloc(sizeof(int) * n);
 		for (long int i = 0; i < n; i++)
 			arr[i] = i;
 
 	int key = -1, iterations = 0;
 	
-	long int low = 0, high = n - 1;
+	int low = 0, high = n - 1;
 
 	//============================
 	while (high >= low) {
