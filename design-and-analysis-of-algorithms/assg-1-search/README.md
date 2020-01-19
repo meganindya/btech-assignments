@@ -1,6 +1,6 @@
 # Assignment 1: Search
 
-## Graphs
+## Plots
 
 ![Sequential Search](q1-graph.png)
 ![Binary Search](q2-graph.png)
