@@ -1,10 +1,13 @@
 #!/usr/bin/gnuplot -persist
-set title "Sequential Search" font "Helvetica Bold, 14"
-set xlabel "array size (n)"
-set ylabel "time (ns)"
+set title "Sequential Search" font "Monospace Bold, 14"
+set xlabel "array size (n)" font "Monospace"
+set ylabel "time (ns)" font "Monospace"
+set key left top
 set grid
 set terminal png size 1024,768
-set output 'q1-graph.png'
-set datafile separator ','
-#plot 'q1.csv' with points pointtype 7 pointsize 0.2
-plot 'q1-data.csv' u 1:2 smooth bezier
+set output "q1-graph.png"
+set datafile separator ","
+plot "q1-data.csv" with lines lt 3 lw 2 linecolor 7,\
+     "q1-data.csv" with points lc rgb "black" pointtype 6 pointsize 1,\
+     2.08 * x lt 1 lw 2 linecolor 6,\
+     2.25 * x lt 1 lw 2 linecolor 2
