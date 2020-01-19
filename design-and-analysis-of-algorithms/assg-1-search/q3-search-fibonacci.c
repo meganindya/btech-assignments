@@ -26,12 +26,12 @@ long int get_fibonacci_search_time(int n) {
     int *arr = malloc(sizeof(int) * n);
     for (long int i = 0; i < n; i++)
         arr[i] = i;
+    
+    int key = -1;
 
     struct timespec start, end;
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &start);
     //============================
-    int key = -1, iterations = 0;
-    
     int fibM2 = 0, fibM1 = 1;
     int fibM0 = fibM2 + fibM1;
 
