@@ -43,8 +43,6 @@ long int get_binary_search_time(int n) {
             low = mid + 1;
         else
             high = mid - 1;
-        
-        iterations++;
     }
     //============================
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &end);
