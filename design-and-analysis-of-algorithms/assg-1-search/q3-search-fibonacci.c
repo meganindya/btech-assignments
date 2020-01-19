@@ -21,14 +21,13 @@ int set_thread_affinity() {
 }
 
 // returns time taken to run algorithm
-long int get_binary_search_time(int n) {
+long int get_fibonacci_search_time(int n) {
     // array declared in heap, to avoid space restrictions
     int *arr = malloc(sizeof(int) * n);
     for (long int i = 0; i < n; i++)
         arr[i] = i;
 
     struct timespec start, end;
-    //clock_gettime(CLOCK_MONOTONIC, &start);
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &start);
     //============================
     int key = -1, iterations = 0;
@@ -68,7 +67,6 @@ long int get_binary_search_time(int n) {
     //============================
 
     exit:
-    //clock_gettime(CLOCK_MONOTONIC, &end);
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &end);
 
     // calculating total time taken by the program.
@@ -93,11 +91,8 @@ int main(int argc, char *argv) {
         };
 
     int array_length = (int) (sizeof(array_sizes) / sizeof(long int));
-    for (int i = 0; i < array_length; i++) {
-        long int time = 0;
-
-        fprintf(fp, "%ld,%ld\n", array_sizes[i], get_binary_search_time(array_sizes[i]));
-    }
+    for (int i = 0; i < array_length; i++)
+        fprintf(fp, "%ld,%ld\n", array_sizes[i], get_fibonacci_search_time(array_sizes[i]));
 
     fclose(fp);
 
