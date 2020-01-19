@@ -58,14 +58,11 @@ long int get_fibonacci_search_time(int n) {
             fibM2 = fibM0 - fibM1;
         }
         else break;
-
-        iterations++;
     }
 
     if (fibM1 == 1 && arr[offset + 1] == key)
         goto exit;
     //============================
-
     exit:
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &end);
 
