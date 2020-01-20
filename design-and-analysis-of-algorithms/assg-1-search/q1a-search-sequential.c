@@ -69,7 +69,7 @@ int main(int argc, char *argv) {
 
     int array_length = (int) (sizeof(array_sizes) / sizeof(long int));
     for (int i = 0; i < array_length; i++)
-        fprintf(fp, "%ld,%ld\n", array_sizes[i], get_binary_search_time(array_sizes[i]));
+        fprintf(fp, "%ld,%ld\n", array_sizes[i], get_sequential_search_time(array_sizes[i]));
 
     fclose(fp);
 
