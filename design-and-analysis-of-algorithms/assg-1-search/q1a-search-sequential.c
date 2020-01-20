@@ -58,7 +58,7 @@ int main(int argc, char *argv) {
     // pinning thread to core 0 and setting thread scheduling scheme to FIFO
     set_thread_affinity();
 
-    FILE *fp = fopen("q1-data.csv", "w");
+    FILE *fp = fopen("q1a-data.csv", "w");
 
     long int array_sizes[] = {
         10000, 50000, 100000, 300000, 600000, 900000, 1000000, 3000000, 5000000, 7000000, 9000000,
@@ -74,8 +74,8 @@ int main(int argc, char *argv) {
     fclose(fp);
 
     // calling BASH script for plotting
-    system("chmod u+x q1-plot.sh");
-    system("./q1-plot.sh");
+    system("chmod u+x q1a-plot.sh");
+    system("./q1a-plot.sh");
 
     return 0;
 }
