@@ -5,5 +5,6 @@ Analysis of some common algorithms written in C, best fit Bezier curve plotted u
 ## Assignment 1: Search
 
 - Sequential Search
+- Sequential Search (improved)
 - Binary Search
 - Fibonacci Search
