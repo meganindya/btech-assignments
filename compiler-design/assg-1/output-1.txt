@@ -8,3 +8,4 @@ Float
 Invalid
 Invalid
 Invalid
+Integer
