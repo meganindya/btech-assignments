@@ -7,18 +7,20 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define MAX 80
 #define PORT 4200
 #define SA struct sockaddr
+#define MAX 1000
 
 
-void func(int);     // chat function declaration
+void chat(int);     // chat function declaration
 
 
 
 int main(int argc, char *argv[]) {
-    int sockfd, connfd;
-    struct sockaddr_in servaddr, cliaddr;
+    // clear terminal
+    system("clear");
+
+    int sockfd; struct sockaddr_in servaddr;
 
     // create socket and verify
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -41,38 +43,45 @@ int main(int argc, char *argv[]) {
     if (connect(sockfd, (SA*) &servaddr, sizeof(servaddr)) == -1) {
         perror("-- connection with server failed, error");
         exit(0);
-    }
-    else
+    } else
         printf("-- connected to server\n");
 
-    // function for chat between client and server
-    func(sockfd);
+    // call function for chat
+    chat(sockfd);
 
     // close socket after chatting
     close(sockfd);
 }
 
 // function for chat between client and server
-void func(int sockfd) {
-    char buff[MAX];
-    int n;
+void chat(int sockfd) {
+    char buff[MAX]; int i;
 
+    printf("\n");
+    // infinite loop for chat
     while (1) {
-        bzero(buff, sizeof(buff));
+        // clear buffer and store client message
+        bzero(buff, sizeof(buff)); i = 0;
+        printf("Client: ");
+        while ((buff[i++] = getchar()) != '\n');
 
-        printf("Enter message: ");
-        n = 0;
-        while ((buff[n++] = getchar()) != '\n');
-
+        // send buffer to server
         write(sockfd, buff, sizeof(buff));
 
-        bzero(buff, sizeof(buff));
+        // if message contains "exit", exit chat
+        if ((strncmp(buff, "exit", 4)) == 0) {
+            printf("\n-- client exit\n");
+            break;
+        }
 
+        // clear buffer and receive server message
+        bzero(buff, sizeof(buff)); i = 0;
         read(sockfd, buff, sizeof(buff));
         printf("Server: %s", buff);
 
+        // if message contains "exit", exit chat
         if ((strncmp(buff, "exit", 4)) == 0) {
-            printf("client exit\n");
+            printf("\n-- client exit\n");
             break;
         }
     }
