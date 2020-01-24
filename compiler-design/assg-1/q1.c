@@ -120,7 +120,7 @@ int getType(int len, char *s) {
     }
 
 
-    if (state == 1)
+    if (state == 1 || state == 4)
         return 1;
     else if (state == 3)
         return 2;
