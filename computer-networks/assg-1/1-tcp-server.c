@@ -5,18 +5,22 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/syscall.h>
 
-#define MAX 80
 #define PORT 4200
 #define SA struct sockaddr
+#define MAX 1000
 
 
-void func(int);     // chat function declaration
+void chat(int);     // chat function declaration
 
 
 
 int main(int argc, char *argv[]) {
-    int sockfd, connfd, len;
+    // clear terminal
+    system("clear");
+
+    int sockfd, connfd;
     struct sockaddr_in servaddr, cliaddr;
 
     // create socket and verify
@@ -40,10 +44,9 @@ int main(int argc, char *argv[]) {
     if ((bind(sockfd, (SA*) &servaddr, sizeof(servaddr))) == -1) {
         perror("-- socket bind failed, error");
         exit(0);
-    }
-    else
+    } else
         printf("-- socket binded successfully\n");
-    
+
     // server is ready to listen and verification
     if ((listen(sockfd, 5)) != 0) {
         perror("-- listen failed, error");
@@ -51,8 +54,8 @@ int main(int argc, char *argv[]) {
     }
     else
         printf("-- server listening on port %u\n", PORT);
-    
-    len = sizeof(cliaddr);
+
+    int len = sizeof(cliaddr);
     // accept the data packet from client and verification
     connfd = accept(sockfd, (SA*) &cliaddr, &len);
     if (connfd == -1) {
@@ -62,40 +65,42 @@ int main(int argc, char *argv[]) {
     else
         printf("-- client accepted by server\n");
 
-    // function for chat between client and server
-    func(connfd);
+    // call function for chat
+    chat(connfd);
 
     // close socket after chatting
     close(sockfd);
 }
 
 // function for chat between client and server
-void func(int sockfd) {
-    char buff[MAX];
-    int n;
+void chat(int sockfd) {
+    char buff[MAX]; int i;
 
+    printf("\n");
     // infinite loop for chat
     while (1) {
-        bzero(buff, MAX);
-
-        // read the message from client and copy it in buffer
+        // clear buffer and receive client message
+        bzero(buff, MAX); i = 0;
         read(sockfd, buff, sizeof(buff));
+        printf("Client: %s", buff);
 
-        // print buffer which contains the client contents
-        printf("From client: %sTo   client: ", buff);
+        // if message contains "exit", exit chat
+        if (strncmp("exit", buff, 4) == 0) {
+            printf("\n-- server exit\n");
+            break;
+        }
 
-        bzero(buff, MAX);
-        n = 0;
-
-        // copy server message in buffer
-        while ((buff[n++] = getchar()) != '\n');
+        // clear buffer and store server message
+        bzero(buff, MAX); i = 0;
+        printf("Server: ");
+        while ((buff[i++] = getchar()) != '\n');
 
         // send buffer to client
         write(sockfd, buff, sizeof(buff));
 
-        // if msg contains "exit" then server exit and chat ended
+        // if message contains "exit", exit chat
         if (strncmp("exit", buff, 4) == 0) {
-            printf("server exit\n");
+            printf("\n-- server exit\n");
             break;
         }
     }
