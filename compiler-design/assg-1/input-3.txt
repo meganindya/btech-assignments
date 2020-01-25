@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
     4 lines */
 
     int b = 9;
+    b++;
 
     a = b +  9 * a;
 
@@ -18,6 +19,8 @@ int main(int argc, char *argv[]) {
 
     int c = b * 1d;   float n = 0.05;
     n = (float) a / n;
+
+    c <<= 2;
 
 
     return 0;
