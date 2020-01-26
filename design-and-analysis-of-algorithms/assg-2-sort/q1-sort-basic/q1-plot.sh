@@ -1,7 +1,7 @@
 #!/usr/bin/gnuplot -persist
 set title "Basic Sort" font "Monospace Bold, 14"
 set xlabel "array size (n)" font "Monospace"
-set ylabel "time (ns)" font "Monospace"
+set ylabel "time (ms)" font "Monospace"
 set key left top
 set grid
 set terminal png size 1024,768
