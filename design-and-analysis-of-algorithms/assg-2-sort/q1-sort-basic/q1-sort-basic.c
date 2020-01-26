@@ -53,7 +53,7 @@ long int get_selection_sort_time(int n, FILE *fp) {
     long time_taken;
     time_taken = (end.tv_sec - start.tv_sec) * 1e9;
     time_taken += (end.tv_nsec - start.tv_nsec);
-    return time_taken;
+    return time_taken / 1e6;
 }
 
 // ================= INSERTION SORT =================
@@ -83,7 +83,7 @@ long int get_insertion_sort_time(int n, FILE *fp) {
     long time_taken;
     time_taken = (end.tv_sec - start.tv_sec) * 1e9;
     time_taken += (end.tv_nsec - start.tv_nsec);
-    return time_taken;
+    return time_taken / 1e6;
 }
 
 // ================== BUBBLE SORT ==================
@@ -117,7 +117,7 @@ long int get_bubble_sort_time(int n, FILE *fp) {
     long time_taken;
     time_taken = (end.tv_sec - start.tv_sec) * 1e9;
     time_taken += (end.tv_nsec - start.tv_nsec);
-    return time_taken;
+    return time_taken / 1e6;
 }
 
 
@@ -166,7 +166,7 @@ int main(int argc, char *argv) {
         timetotal += timeiter;
     }
 
-    printf("selection sort completed in %.2lfs\n", ((double) timetotal / 1e9));
+    printf("selection sort completed in %.2lfs\n", ((double) timetotal / 1e3));
     fclose(fo);
 
 
@@ -188,7 +188,7 @@ int main(int argc, char *argv) {
         timetotal += timeiter;
     }
 
-    printf("insertion sort completed in %.2lfs\n", ((double) timetotal / 1e9));
+    printf("insertion sort completed in %.2lfs\n", ((double) timetotal / 1e3));
     fclose(fo);
 
 
@@ -210,7 +210,7 @@ int main(int argc, char *argv) {
         timetotal += timeiter;
     }
 
-    printf("bubble sort completed in %.2lfs\n", ((double) timetotal / 1e9));
+    printf("bubble sort completed in %.2lfs\n", ((double) timetotal / 1e3));
     fclose(fo);
 
 
