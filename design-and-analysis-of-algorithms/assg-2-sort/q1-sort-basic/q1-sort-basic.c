@@ -141,11 +141,14 @@ int main(int argc, char *argv) {
     const char filepathtemp[] = "./data-input/size-00.dat";
     FILE *fi, *fo;
 
+    // check for directory existence
     struct stat stats;
     stat("data-output", &stats);
-    // check for directory existence
     if (!S_ISDIR(stats.st_mode))
         system("mkdir data-output");
+    stat("plots", &stats);
+    if (!S_ISDIR(stats.st_mode))
+        system("mkdir plots");
 
 
     // ================= SELECTION SORT =================
