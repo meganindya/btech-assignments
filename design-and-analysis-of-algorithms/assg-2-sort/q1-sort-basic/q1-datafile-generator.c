@@ -1,20 +1,23 @@
+// creates random data lists of different sizes
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 
 int main(int argc, char *argv[]) {
-    const char *filepaths[5] = {
-        "./data-input/size-1.csv",
-        "./data-input/size-2.csv",
-        "./data-input/size-3.csv",
-        "./data-input/size-4.csv",
-        "./data-input/size-5.csv"
-    };
-
     int sizes[] = { 1000, 5000, 10000, 50000, 100000 };
-    for (int i = 0; i < 5; i++) {
-        FILE *fp = fopen(filepaths[i], "w");
+    int len = sizeof(sizes) / sizeof(int);
+    
+    const char filepathtemp[] = "./data-input/size-00.csv";
+
+    for (int i = 0; i < len; i++) {
+        char filepathcurr[24];
+        strcpy(filepathcurr, filepathtemp);
+        filepathcurr[18] = '0' + (i + 1) / 10;
+        filepathcurr[19] = '0' + (i + 1) % 10;
+        FILE *fp = fopen(filepathcurr, "w");
 
         srand(time(0));
         for (int j = 0; j < sizes[i]; j++)
