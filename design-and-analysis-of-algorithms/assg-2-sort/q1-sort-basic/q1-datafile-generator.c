@@ -7,7 +7,7 @@
 
 
 int main(int argc, char *argv[]) {
-    int sizes[] = { 1000, 5000, 10000, 50000, 100000 };
+    int sizes[] = { 1000, 10000, 30000, 50000, 70000, 85000, 100000 };
     int len = sizeof(sizes) / sizeof(int);
     
     const char filepathtemp[] = "./data-input/size-00.csv";
