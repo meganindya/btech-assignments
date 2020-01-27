@@ -97,18 +97,22 @@ long int get_bubble_sort_time(int n, FILE *fp) {
     struct timespec start, end;
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &start);
     //============================
-    for (int i = 0; i < n; i++) {
-        int swapped = 0;
-        for (int j = 0; j < n - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                swapped = 1;
-            }
+    int bound = n, t;
+    
+    loop:
+    t = 0;
+    for (int i = 0; i < bound - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            int temp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = temp;
+
+            t = i + 1;
         }
-        if (swapped == 0)
-            break;
+    }
+    if (t > 0) {
+        bound = t;
+        goto loop;
     }
     //============================
     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &end);
@@ -142,13 +146,15 @@ int main(int argc, char *argv) {
     FILE *fi, *fo;
 
     // check for directory existence
-    struct stat stats;
-    stat("data-output", &stats);
-    if (!S_ISDIR(stats.st_mode))
+    struct stat stat1, stat2;
+    stat("data-output", &stat1);
+    if (!S_ISDIR(stat1.st_mode))
         system("mkdir data-output");
-    stat("plots", &stats);
-    if (!S_ISDIR(stats.st_mode))
+    stat("plots", &stat2);
+    if (!S_ISDIR(stat2.st_mode))
         system("mkdir plots");
+    
+    FILE *fx = fopen("./data-output/time.txt", "w+");
 
 
     // ================= SELECTION SORT =================
@@ -170,6 +176,7 @@ int main(int argc, char *argv) {
     }
 
     printf("selection sort completed in %.2lfs\n", ((double) timetotal / 1e3));
+    fprintf(fx, "selection sort completed in %.2lfs\n", ((double) timetotal / 1e3));
     fclose(fo);
 
 
@@ -192,6 +199,7 @@ int main(int argc, char *argv) {
     }
 
     printf("insertion sort completed in %.2lfs\n", ((double) timetotal / 1e3));
+    fprintf(fx, "insertion sort completed in %.2lfs\n", ((double) timetotal / 1e3));
     fclose(fo);
 
 
@@ -214,6 +222,7 @@ int main(int argc, char *argv) {
     }
 
     printf("bubble sort completed in %.2lfs\n", ((double) timetotal / 1e3));
+    fprintf(fx, "bubble sort completed in %.2lfs\n", ((double) timetotal / 1e3));
     fclose(fo);
 
 
