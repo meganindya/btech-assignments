@@ -1,0 +1,3 @@
+selection sort completed in 39.89s
+insertion sort completed in 21.50s
+bubble sort completed in 98.87s
