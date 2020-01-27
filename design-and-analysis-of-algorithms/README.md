@@ -8,3 +8,9 @@ Analysis of some common algorithms written in C, best fit Bezier curve plotted u
 - Sequential Search (improved)
 - Binary Search
 - Fibonacci Search
+
+## Assignment 2: Sort
+
+- Selection Sort
+- Insertion Sort
+- Bubble Sort
