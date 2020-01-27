@@ -131,7 +131,7 @@ int main(int argc, char *argv) {
     set_thread_affinity();
 
     // fetch list of sizes
-    FILE *fp = fopen("./data-input/sizes.dat", "r");
+    FILE *fp = fopen("../data-input/sizes.dat", "r");
     int len = -1, temp;
     while (!feof(fp)) { fscanf(fp, "%d", &temp); len++; }
     rewind(fp);
@@ -142,30 +142,30 @@ int main(int argc, char *argv) {
 
     long int timetotal, timeiter;
 
-    const char filepathtemp[] = "./data-input/size-00.dat";
+    const char filepathtemp[] = "../data-input/size-00.dat";
     FILE *fi, *fo;
 
     // check for directory existence
     struct stat stat1, stat2;
-    stat("data-output", &stat1);
+    stat("q1-data-output", &stat1);
     if (!S_ISDIR(stat1.st_mode))
-        system("mkdir data-output");
-    stat("plots", &stat2);
+        system("mkdir q1-data-output");
+    stat("q1-plots", &stat2);
     if (!S_ISDIR(stat2.st_mode))
-        system("mkdir plots");
+        system("mkdir q1-plots");
     
-    FILE *fx = fopen("./data-output/time.txt", "w+");
+    FILE *fx = fopen("./q1-data-output/q1-time.txt", "w+");
 
 
     // ================= SELECTION SORT =================
     timetotal = 0;
-    fo = fopen("./data-output/q1a-data-sort-selection.csv", "w+");
+    fo = fopen("./q1-data-output/q1a-data-sort-selection.csv", "w+");
     
     for (int i = 0; i < len; i++) {
-        char filepathcurr[24];
+        char filepathcurr[25];
         strcpy(filepathcurr, filepathtemp);
-        filepathcurr[18] = '0' + (i + 1) / 10;
-        filepathcurr[19] = '0' + (i + 1) % 10;
+        filepathcurr[19] = '0' + (i + 1) / 10;
+        filepathcurr[20] = '0' + (i + 1) % 10;
         
         fi = fopen(filepathcurr, "r");
         timeiter = get_selection_sort_time(sizes[i], fi);
@@ -182,13 +182,13 @@ int main(int argc, char *argv) {
 
     // ================= INSERTION SORT =================
     timetotal = 0;
-    fo = fopen("./data-output/q1b-data-sort-insertion.csv", "w+");
+    fo = fopen("./q1-data-output/q1b-data-sort-insertion.csv", "w+");
     
     for (int i = 0; i < len; i++) {
-        char filepathcurr[24];
+        char filepathcurr[25];
         strcpy(filepathcurr, filepathtemp);
-        filepathcurr[18] = '0' + (i + 1) / 10;
-        filepathcurr[19] = '0' + (i + 1) % 10;
+        filepathcurr[19] = '0' + (i + 1) / 10;
+        filepathcurr[20] = '0' + (i + 1) % 10;
         
         fi = fopen(filepathcurr, "r");
         timeiter = get_insertion_sort_time(sizes[i], fi);
@@ -205,13 +205,13 @@ int main(int argc, char *argv) {
 
     // ================== BUBBLE SORT ==================
     timetotal = 0;
-    fo = fopen("./data-output/q1c-data-sort-bubble.csv", "w+");
+    fo = fopen("./q1-data-output/q1c-data-sort-bubble.csv", "w+");
     
     for (int i = 0; i < len; i++) {
-        char filepathcurr[24];
+        char filepathcurr[25];
         strcpy(filepathcurr, filepathtemp);
-        filepathcurr[18] = '0' + (i + 1) / 10;
-        filepathcurr[19] = '0' + (i + 1) % 10;
+        filepathcurr[19] = '0' + (i + 1) / 10;
+        filepathcurr[20] = '0' + (i + 1) % 10;
         
         fi = fopen(filepathcurr, "r");
         timeiter = get_bubble_sort_time(sizes[i], fi);
@@ -225,11 +225,7 @@ int main(int argc, char *argv) {
     fprintf(fx, "bubble sort completed in %.2lfs\n", ((double) timetotal / 1e3));
     fclose(fo);
 
-
-    // calling BASH script for plotting
-    system("chmod u+x q1-plot.sh");
-    system("./q1-plot.sh");
-
+    fclose(fx);
 
     return 0;
 }
