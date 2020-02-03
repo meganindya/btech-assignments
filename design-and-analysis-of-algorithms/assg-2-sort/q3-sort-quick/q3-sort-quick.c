@@ -24,9 +24,14 @@ int set_thread_affinity() {
 
 // =================== QUICK SORT ===================
 // utility function for partition
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
+int partition(int arr[], int low, int high, int type) {
+    int i = low - 1, pivotindex;
+    if (type == 0)
+        pivotindex = high;
+    else
+        pivotindex = low + 1 + rand() % (high - low);
+    int pivot = arr[pivotindex];
+    
     for (int j = low; j < high; j++) {
         if (arr[j] < pivot) {
             i++;
@@ -37,8 +42,8 @@ int partition(int arr[], int low, int high) {
     }
 
     int temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
+    arr[i + 1] = arr[pivotindex];
+    arr[pivotindex] = temp;
 
     return i + 1;
 }
@@ -46,7 +51,7 @@ int partition(int arr[], int low, int high) {
 // utility function for recursive calls
 void sort(int arr[], int low, int high, int type) {
     if (low < high) {
-        int pi = partition(arr, low, high);
+        int pi = partition(arr, low, high, type);
         
         sort(arr, low, pi - 1, type);
         sort(arr, pi + 1, high, type);
