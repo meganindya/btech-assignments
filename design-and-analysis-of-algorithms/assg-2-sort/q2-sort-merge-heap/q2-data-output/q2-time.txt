@@ -1,2 +1,2 @@
-merge sort completed in 84.49ms
-heap sort completed in 121.41ms
+merge sort completed in 84.30ms
+heap sort completed in 121.05ms
