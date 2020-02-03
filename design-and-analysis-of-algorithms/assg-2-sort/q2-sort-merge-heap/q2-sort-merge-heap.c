@@ -185,7 +185,7 @@ int main(int argc, char *argv) {
         timeiter = get_merge_sort_time(sizes[i], fi);
         fclose(fi);
 
-        fprintf(fo, "%d,%ld\n", sizes[i], timeiter);
+        fprintf(fo, "%d,%.2lf\n", sizes[i], ((double) timeiter / 1e6));
         timetotal += timeiter;
     }
 
@@ -208,7 +208,7 @@ int main(int argc, char *argv) {
         timeiter = get_heap_sort_time(sizes[i], fi);
         fclose(fi);
 
-        fprintf(fo, "%d,%ld\n", sizes[i], timeiter);
+        fprintf(fo, "%d,%.2lf\n", sizes[i], ((double) timeiter / 1e6));
         timetotal += timeiter;
     }
 

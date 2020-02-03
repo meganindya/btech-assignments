@@ -48,8 +48,8 @@ void sort(int arr[], int low, int high, int type) {
     if (low < high) {
         int pi = partition(arr, low, high);
         
-        sort(arr, low, pi - 1);
-        sort(arr, pi + 1, high);
+        sort(arr, low, pi - 1, type);
+        sort(arr, pi + 1, high, type);
     }
 }
 
@@ -122,7 +122,7 @@ int main(int argc, char *argv) {
         timeiter = get_quick_sort_time(sizes[i], fi, 0);
         fclose(fi);
 
-        fprintf(fo, "%d,%ld\n", sizes[i], timeiter);
+        fprintf(fo, "%d,%.2lf\n", sizes[i], ((double) timeiter / 1e6));
         timetotal += timeiter;
     }
 
@@ -145,7 +145,7 @@ int main(int argc, char *argv) {
         timeiter = get_quick_sort_time(sizes[i], fi, 1);
         fclose(fi);
 
-        fprintf(fo, "%d,%ld\n", sizes[i], timeiter);
+        fprintf(fo, "%d,%.2lf\n", sizes[i], ((double) timeiter / 1e6));
         timetotal += timeiter;
     }
 
