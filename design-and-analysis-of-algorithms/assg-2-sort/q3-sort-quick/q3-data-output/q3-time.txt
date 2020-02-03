@@ -1,2 +1,2 @@
-quick sort (original) completed in 65.54ms
-quick sort (modified) completed in 65.66ms
+quick sort (original) completed in 66.42ms
+quick sort (modified) completed in 69.24ms
