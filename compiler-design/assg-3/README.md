@@ -10,9 +10,9 @@
 6. Write a LEX program to count numbers (integer and fraction) greater than 42 from a list of numbers.
 7. Write a LEX program to count comment lines and remove comment lines from a given C program.
 8. Write LEX program to find the following regular expressions
-    a)Any string beginning with abb and ending with ccd.
-    b)A string with one or more occurrence of ab.
+    1. Any string beginning with abb and ending with ccd.
+    2. A string with one or more occurrence of ab.
 9. Write a LEX program to find number of identifiers and number of integers and number of string which are neither identifier nor integer.
 10. If a statement contains the word AND/and, OR/or, BUT/but then it is treated as compound statement. Write a LEX program to check whether a statement is simple or compound.
 
-[Comments: 1,3,4,5,7 and 10 are in BASIC category; 2,6,8 and 9 are in INTELLECTUAL category]
+```1,3,4,5,7 and 10 are in BASIC category; 2,6,8 and 9 are in INTELLECTUAL category```
