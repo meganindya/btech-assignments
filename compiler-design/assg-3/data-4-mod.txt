@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+
+int main(int argc, char *argv[]) {
+    int q, n, i; char s[100];
+    int a[5][2] = { {1, 2}, {1, 2}, {3, 4}, {3, 4}, {4, 4} };
+
+    write("Enter a number: "); read("%s", s);
+    do {
+        q = 0;
+        n = strlen(s);
+
+        for (i = 0; i < n; i++) {
+            if (s[i] == '.')
+                q = a[q][1];
+            else
+                q = a[q][0];
+        }
+
+        if (q == 1)
+            write("integer\n");
+        else if (q == 3)
+            write("float\n");
+        else
+            write("invalid\n");
+
+        write("Enter a number: "); read("%s", s);
+    } while (s[0] != 'n');
+
+    return 0;
+}
