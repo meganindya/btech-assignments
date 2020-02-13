@@ -11,8 +11,8 @@
 %%
 
 int main(int argc, char *argv[]) {
-    yyin = fopen("data-7.txt", "r");
-    yyout = fopen("data-7-mod.txt", "w");
+    yyin = fopen("files/data-7.txt", "r");
+    yyout = fopen("files/data-7-mod.txt", "w");
     yylex();
 
     printf("number of single line comments: %d\n", single);

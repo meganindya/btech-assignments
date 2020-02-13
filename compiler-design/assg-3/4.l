@@ -20,8 +20,8 @@ scanf {
 
 int yywrap(){}
 int main(int argc, char *argv[]) {
-    yyin = fopen("data-4.txt", "r");
-    yyout = fopen("data-4-mod.txt", "w");
+    yyin = fopen("files/data-4.txt", "r");
+    yyout = fopen("files/data-4-mod.txt", "w");
 
     yylex();
 
