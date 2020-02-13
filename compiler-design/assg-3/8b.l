@@ -5,8 +5,8 @@
 %}
 
 %%
-[a-zA-Z0-9]*[a][b][a-zA-Z0-9]*  flag = 1;
-[a-zA-Z0-9]+                    ;
+[a-zA-Z0-9]*([a][b])+[a-zA-Z0-9]*   flag = 1;
+[a-zA-Z0-9]+                        ;
 %%
 
 int main(int argc, char *argv[]) {
