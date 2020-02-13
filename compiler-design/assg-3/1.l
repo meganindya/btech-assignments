@@ -1,29 +1,23 @@
 %{
     #include <stdio.h>
 
-    int v_count = 0;
-    int c_count = 0;
+    int c_vowel = 0;
+    int c_const = 0;
 %}
 
 
 %%
-[aeiouAEIOU] {
-    v_count++;
-}
-
-[a-zA-Z] {
-    c_count++;
-}
-
-. ;
+[aeiouAEIOU]    c_vowel++;
+[a-zA-Z]        c_const++;
+.               ;
 %%
 
 int main(int argc, char *argv[]) {
     printf("Enter string: ");
     yylex();
 
-    printf("Number of vowels: %d\n", v_count);
-    printf("Number of consonants: %d\n", c_count);
+    printf("Number of vowels:     %d\n", c_vowel);
+    printf("Number of consonants: %d\n", c_const);
 
     return 0;
 }
