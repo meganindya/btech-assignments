@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main(int argc, char **argv) {
+    
+    
+
+    int a;
+    printf("Enter number: ");
+    scanf("%d", &a);
+
+    int b = a + 5;
+        printf("%d\n", b);
+
+    return 0;
+}
