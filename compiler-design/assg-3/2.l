@@ -13,16 +13,15 @@
 
 [\+]?[0-9]*[\.][0-9]+                       pf++;
 [\+]?[0-9]*[\.][0-9]+[\.][0-9]*             ;
-([\+]?[0-9]*([\.][0-9]+)[e|E][\+|-]?[0-9]+) pf++;
-([\+]?[0-9]+[e|E][\+|-]?[0-9]+)             pf++;
+[\+]?[0-9]*[\.][0-9]+[e|E][\+|-]?[0-9]+     pf++;
+[\+]?[0-9]+[e|E][\+|-]?[0-9]+               pf++;
 
-[-][0-9]*\.[0-9]+                           nf++;
-[-]?[0-9]*[\.][0-9]+[\.][0-9]*              ;
-[-][0-9]*([\.][0-9]+)[e|E][\+|-]?[0-9]+     nf++;
-[-]?[0-9]+[e|E][\+|-]?[0-9]+                nf++;
+[-][0-9]*[\.][0-9]+                         nf++;
+[-][0-9]*[\.][0-9]+[\.][0-9]*               ;
+[-][0-9]*[\.][0-9]+[e|E][\+|-]?[0-9]+       nf++;
+[-][0-9]+[e|E][\+|-]?[0-9]+                 nf++;
 
 .                   ;
-\n                  return 0;
 %%
 
 int yywrap() {}
@@ -30,10 +29,10 @@ int main(int argc, char *argv[]) {
     printf("Enter string: ");
     yylex();
 
-    printf("Number of Positive integers: %d\n", pi);
-    printf("Number of Negative integers: %d\n", ni);
-    printf("Number of Positive fractions: %d\n", pf);
-    printf("Number of Negative fractions: %d\n", nf);
+    printf("number of Positive Integers: %d\n", pi);
+    printf("number of Negative Integers: %d\n", ni);
+    printf("number of Positive Fractions: %d\n", pf);
+    printf("number of Negative Fractions: %d\n", nf);
 
     return 0;
 }

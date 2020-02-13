@@ -16,8 +16,8 @@ int main(int argc, char *argv[]) {
     printf("Enter string: ");
     yylex();
 
-    printf("Number of vowels:     %d\n", c_vowel);
-    printf("Number of consonants: %d\n", c_const);
+    printf("number of vowels:     %d\n", c_vowel);
+    printf("number of consonants: %d\n", c_const);
 
     return 0;
 }
