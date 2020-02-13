@@ -24,7 +24,7 @@
 %%
 
 int main(int argc, char *argv[]) {
-    printf("Input: ");
+    yyin = fopen("data-5.txt", "r");
     yylex();
 
     printf("number of characters:   %d\n", chars);
