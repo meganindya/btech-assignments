@@ -8,7 +8,7 @@
 %}
 
 %%
-[ \t]           spacs++;
+[ ] spacs++;
 
 [\n]            {
     lines++;
@@ -20,17 +20,17 @@
     chars += yyleng;
 }
 
-[^a-zA-Z0-9 \t] chars++;
+.   chars++;
 %%
 
 int main(int argc, char *argv[]) {
     yyin = fopen("files/data-5.txt", "r");
     yylex();
 
-    printf("number of characters: %d\n", chars);
-    printf("number of spaces:     %d\n", spacs);
-    printf("number of lines:      %d\n", lines + 1);
-    printf("number of words:      %d\n", words);
+    printf("number of characters : %d\n", chars);
+    printf("number of spaces     : %d\n", spacs);
+    printf("number of lines      : %d\n", lines + 1);
+    printf("number of words      : %d\n", words);
 
     return 0;
 }
