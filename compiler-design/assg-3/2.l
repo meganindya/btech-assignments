@@ -29,14 +29,10 @@ int main(int argc, char *argv[]) {
     printf("Enter string: ");
     yylex();
 
-    printf("number of Positive Integers: %d\n", pi);
-    printf("number of Negative Integers: %d\n", ni);
-    printf("number of Positive Fractions: %d\n", pf);
-    printf("number of Negative Fractions: %d\n", nf);
+    printf("number of Positive Integers  : %d\n", pi);
+    printf("number of Negative Integers  : %d\n", ni);
+    printf("number of Positive Fractions : %d\n", pf);
+    printf("number of Negative Fractions : %d\n", nf);
 
     return 0;
 }
-
-/*
-[A-Za-z0-9!@#$%^&*()~`:;"',.\/<>\\\|\+\-]+ {;}
-*/

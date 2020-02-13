@@ -1,7 +1,8 @@
 %{
     #include <stdio.h>
+
     int c_printf = 0;
-    int c_scanf = 0;
+    int c_scanf  = 0;
 %}
 
 %%
@@ -18,15 +19,14 @@ scanf {
 .   ECHO;
 %%
 
-int yywrap(){}
 int main(int argc, char *argv[]) {
-    yyin = fopen("files/data-4.txt", "r");
+    yyin  = fopen("files/data-4.txt", "r");
     yyout = fopen("files/data-4-mod.txt", "w");
 
     yylex();
 
-    printf("Number of printf in file = %d\n", c_printf);
-    printf("Number of scanf in file = %d\n", c_scanf);
+    printf("number of \'printf\' in file = %d\n", c_printf);
+    printf("number of \'scanf\' in file  = %d\n", c_scanf);
 
     fclose(yyin);
     fclose(yyout);
