@@ -38,6 +38,8 @@ public class TCPServer extends Thread {
                 break;
             }
         }
+
+        sc.close();
     }
 
     public void chat(Socket conn, DataInputStream inp, DataOutputStream out) throws IOException {
