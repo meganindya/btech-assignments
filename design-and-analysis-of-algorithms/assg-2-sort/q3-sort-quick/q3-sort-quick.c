@@ -58,6 +58,50 @@ void sort(int arr[], int low, int high, int type) {
     }
 }
 
+// *****
+/*void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+int partition(int arr[], int low, int high, int type) {
+    int x = arr[high];
+    int i = low - 1;
+
+    for (int j = low; j <= high - 1; j++)
+        if (arr[j] <= x)
+            swap(&arr[++i], &arr[j]);
+
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high, int type) {
+    int stack[high - low + 1], top = -1;
+
+    stack[++top] = low;
+    stack[++top] = high;
+
+    while (top >= 0) {
+        high = stack[top--];
+        low  = stack[top--];
+
+        int p = partition(arr, low, high);
+
+        if (p - 1 > low) {
+            stack[++top] = low;
+            stack[++top] = p - 1;
+        }
+
+        if (p + 1 < high) {
+            stack[++top] = p + 1;
+            stack[++top] = high;
+        }
+    }
+}*/
+// *****
+
 // returns time taken to run algorithm
 long int get_quick_sort_time(int n, FILE *fp, int type) {
     // array declared in heap, to avoid space restrictions
