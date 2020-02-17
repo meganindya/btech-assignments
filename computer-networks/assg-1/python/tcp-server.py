@@ -3,6 +3,9 @@ import sys
 from os import system
 
 
+def chat(connection):
+    pass
+
 if __name__ == "__main__":
     system('clear')
 

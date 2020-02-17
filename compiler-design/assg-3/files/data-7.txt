@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+// main function
+int main(int argc, char **argv) {
+    // this is a single line comment
+
+    /* this is a
+    // multi line
+    comment spread over
+    4 lines */
+
+    int a;
+    printf("Enter number: ");
+    scanf("%d", &a);
+
+    int b = a + 5;
+    // print b
+    printf("%d\n", b);
+
+    return 0;
+}
