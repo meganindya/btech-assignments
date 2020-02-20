@@ -3,11 +3,14 @@
 ## Questions
 
 1. Write a C program to represent a Grammar in (VN, ∑, P, S) format.</br>
-    Input: Set of Terminals</br>
+    *Input:*</br>
+    Set of Terminals</br>
     Set of Non Terminals</br>
     Set of Production Rules</br>
     Start Symbol</br>
-    Output: The Grammar in (VN, ∑, P, S ) format.
+    
+    *Output:*</br>
+    The Grammar in (VN, ∑, P, S ) format
 
     Also check a) whether production exists for all non terminals, b) terminals used in productions are in ∑.
 
