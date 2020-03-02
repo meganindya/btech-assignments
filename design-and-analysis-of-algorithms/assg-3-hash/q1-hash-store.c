@@ -4,13 +4,18 @@
 
 #define KEYS 100000
 
+typedef struct listnode {
+    int val;
+    struct listnode *next;
+} node;
+
 
 int hash_by_mod(int a, int len) {
     return a % len;
 }
 
 int hash_by_mult(int a, int len) {
-    return floor(len * frac(a * 0.5514));
+    return floor(len * (((double) a * 0.5514) % (double) 1));
 }
 
 
@@ -47,16 +52,27 @@ void store_quadratic_probing(FILE *fp, float lf, int *keys) {
 
 void store_chaining(FILE *fp, float lf, int *keys) {
     int len = KEYS / lf;
-    int **arr = (int **) malloc(sizeof(int) * len);
+    node **arr = (node **) malloc(sizeof(node) * len);
+    for (int i = 0; i < len; i++)   arr[i] = null;
 
     for (int i = 0; i < KEYS; i++) {
         int loc = hash_by_mod(keys[i], len);
-        while ((arr[loc++] % len) != 0);
-        arr[loc - 1] = keys[i];
+        
+        node temp;
+        temp -> val = keys[i];
+        temp -> next = arr[loc];
+        arr[loc] = &temp;
     }
 
-    for (int i = 0; i < len; i++)
-        fprintf(fp, "%d\n", arr[i]);
+    for (int i = 0; i < len; i++) {
+        fprintf(fp, "%d\n", i);
+        node curr = arr[loc];
+        while (curr != null) {
+            fprintf(fp, "%d\n", curr -> val);
+            curr = curr -> next;
+        }
+        fprintf(fp, "%d\n", -1);
+    }
 }
 
 
@@ -94,7 +110,7 @@ int main(int argc, char *argv[]) {
 
 
     for (int i = 0; i < 5; i++) {
-        char fname[30] = "./q1-data-input/quad-prob-X.dat";
+        char fname[31] = "./q1-data-input/quad-prob-X.dat";
         fname[25] = i + '0';
         FILE *fp = fopen(fname, "w+");
         store_quadratic_probing(fp, lf[i], keys);
@@ -112,7 +128,7 @@ int main(int argc, char *argv[]) {
 
 
     for (int i = 0; i < 5; i++) {
-        char fname[30] = "./q1-data-input/double-hash-X.dat";
+        char fname[33] = "./q1-data-input/double-hash-X.dat";
         fname[25] = i + '0';
         FILE *fp = fopen(fname, "w+");
         store_double_hashing(fp, lf[i], keys);
