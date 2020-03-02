@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 
     srand(time(0));
     for (int i = 0; i < 100000; i++)
-        fprintf(fp, "%d\n", 1 + (int) (rand() % 65535));
+        fprintf(fp, "%d\n", 1 + (int) (rand() % 67107840));
 
     fclose(fp);
     return 0;
