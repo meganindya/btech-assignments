@@ -15,7 +15,9 @@ int hash_by_mod(int a, int len) {
 }
 
 int hash_by_mult(int a, int len) {
-    return floor(len * (((double) a * 0.5514) % (double) 1));
+    double temp = (double) a * 0.5514;
+    temp -= floor(temp);
+    return floor((double) len * temp);
 }
 
 
@@ -52,21 +54,21 @@ void store_quadratic_probing(FILE *fp, float lf, int *keys) {
 
 void store_chaining(FILE *fp, float lf, int *keys) {
     int len = KEYS / lf;
-    node **arr = (node **) malloc(sizeof(node) * len);
+    node **arr = (node **) malloc(sizeof(node *) * len);
     for (int i = 0; i < len; i++)   arr[i] = null;
 
     for (int i = 0; i < KEYS; i++) {
         int loc = hash_by_mod(keys[i], len);
         
-        node temp;
+        node *temp;
         temp -> val = keys[i];
         temp -> next = arr[loc];
-        arr[loc] = &temp;
+        arr[loc] = temp;
     }
 
     for (int i = 0; i < len; i++) {
         fprintf(fp, "%d\n", i);
-        node curr = arr[loc];
+        node *curr = arr[i];
         while (curr != null) {
             fprintf(fp, "%d\n", curr -> val);
             curr = curr -> next;
