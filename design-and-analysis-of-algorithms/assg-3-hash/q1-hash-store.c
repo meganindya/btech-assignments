@@ -60,7 +60,7 @@ void store_chaining(FILE *fp, float lf, int *keys) {
     for (int i = 0; i < KEYS; i++) {
         int loc = hash_by_mod(keys[i], len);
         
-        node *temp;
+        node *temp = (node *) malloc(sizeof(node));
         temp -> val = keys[i];
         temp -> next = arr[loc];
         arr[loc] = temp;
