@@ -2,7 +2,7 @@
 
 ## Questions
 
-1. Write a C program to represent a Grammar in (VN, ∑, P, S) format.</br>
+1. Write a C program to represent a Grammar in (V<sub>N</sub>, ∑, P, S) format.</br>
     *Input:*</br>
     Set of Terminals</br>
     Set of Non Terminals</br>
@@ -10,7 +10,7 @@
     Start Symbol</br>
     
     *Output:*</br>
-    The Grammar in (VN, ∑, P, S ) format
+    The Grammar in (V<sub>N</sub>, ∑, P, S) format
 
     Also check a) whether production exists for all non terminals, b) terminals used in productions are in ∑.
 
