@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 int main(int argc, char *argv[]) {
@@ -30,39 +31,31 @@ int main(int argc, char *argv[]) {
     char pr[c_pr][64];
     for (int i = 0; i < c_pr; i++) {
         printf("RULE %d: ", (i + 1));
-        scanf("%s", pr[i]);
+        char temp[64];
+        scanf("%s", temp);
+        strcpy(pr[i], temp);
+        puts(pr[i]);
     }
 
-    /*char ss;
+    char ss;
     do {
         printf("\nEnter Start Symbol: ");
-        scanf("%c", &ss);
+        scanf(" %c", &ss);
 
         int flag = 0;
-        for (int i = 0; i < (sizeof(nt) / sizeof(int)); i++)
+        for (int i = 0; i < c_nt; i++) {
             if (ss == nt[i]) {
                 flag = 1;
                 break;
             }
+        }
 
         if (flag == 0)
             printf("Invalid! Retry\n");
-    } while(1);*/
+        else
+            break;
+    } while(1);
 
-
-    for (int i = 0; i < c_nt; i++)
-        printf("%c\n", nt[i]);
-    printf("\n");
-
-    for (int i = 0; i < c_tm; i++)
-        printf("%c\n", tm[i]);
-    printf("\n");
-
-    for (int i = 0; i < (sizeof(nt) / sizeof(int)); i++)
-        printf("%s\n", pr[i]);
-    printf("\n");
-
-    //printf("%c\n", ss);
 
     return 0;
 }
