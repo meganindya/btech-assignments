@@ -2,12 +2,18 @@
 #include <stdio.h>
 #include <string.h>
 
-// linked list node for production rules
+// linked list nodes for production rules
 typedef struct list {
     char val;
     int type;
     struct list *next;
 } node;
+
+typedef struct NTnode {
+    char val;
+    int c_der;
+    node **derivatives;
+} NTnode;
 
 
 // function declarations
@@ -18,13 +24,15 @@ void storeStartSymbol();
 
 void printGrammar();
 
+void groupRules();
+
 
 // globals
 int c_nt, c_tm, c_pr;
 char *nt, *tm, ss;
 node **pr;
-
 int symbols[256][2];
+NTnode **prs;
 
 
 // main
@@ -37,6 +45,8 @@ int main(int argc, char *argv[]) {
     storeStartSymbol();
 
     printGrammar();
+
+    groupRules();
 
     return 0;
 }
@@ -97,6 +107,10 @@ void storeProductionRules() {
         printf("RULE %d: ", (i + 1));
         char temp[64];
         scanf("%s", temp);
+        if (strlen(temp) < 3) {
+            printf("Invalid Rule! Retry");
+            i--; continue;
+        }
 
         if (symbols[temp[0]][0] != 1) {
             printf("First symbol has to be a non-terminal\n");
@@ -174,7 +188,7 @@ void storeStartSymbol() {
 
 
 void printGrammar() {
-    printf("\nGrammar:\n--------\n");
+    printf("\nGrammar:\n--------");
     printf("\nNon-terminals: %c", nt[0]);
     for (int i = 1; i < c_nt; i++)
         printf(", %c", nt[i]);
@@ -197,4 +211,44 @@ void printGrammar() {
     }
 
     printf("\nStart Symbol: %c\n", ss);
+}
+
+
+void groupRules() {
+    prs = (NTnode **) malloc(sizeof(NTnode *) * c_nt);
+    for (int i = 0; i < c_nt; i++) {
+        NTnode *temp = (NTnode *) malloc(sizeof(NTnode));
+        temp -> val = nt[i];
+
+        int count = 0;
+        for (int j = 0; j < c_pr; j++) {
+            if ((pr[j] -> val) == nt[i])
+                count++;
+        }
+
+        temp -> c_der = count;
+        temp -> derivatives = (node **) malloc(sizeof(node *) * count);
+
+        int k = 0;
+        for (int j = 0; j < c_pr; j++) {
+            if ((pr[j] -> val) == nt[i])
+                temp -> derivatives[k++] = ((pr[j] -> next) -> next);
+        }
+
+        prs[i] = temp;
+    }
+
+    printf("\nProduction Rules:\n");
+    for (int i = 0; i < c_nt; i++) {
+        printf("  %c -> ", (prs[i] -> val));
+        for (int j = 0; j < (prs[i] -> c_der); j++) {
+            if (j != 0) printf("/");
+            node *curr = prs[i] -> derivatives[j];
+            while (curr != NULL) {
+                printf("%c", curr -> val);
+                curr = curr -> next;
+            }
+        }
+        printf("\n");
+    }
 }
