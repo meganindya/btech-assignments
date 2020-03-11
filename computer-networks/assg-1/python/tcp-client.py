@@ -3,6 +3,19 @@ import sys
 from os import system
 
 
+def chat(sock):
+    while True:
+        message = input('CLIENT: ')
+        sock.sendall(message.encode())
+        if message == 'exit':
+            break
+
+        response = sock.recv(12).decode();
+        print('SERVER: %s' % response, file=sys.stderr)
+        if response == 'exit':
+            break
+
+
 if __name__ == "__main__":
     system('clear')
 
@@ -11,10 +24,11 @@ if __name__ == "__main__":
 
     # connect socket to the server's listening port
     server_address = ('localhost', 4200)
-    print('connecting to %s port %s' % server_address, file=sys.stderr)
+    print('connecting to %s port %s\n' % server_address, file=sys.stderr)
     sock.connect(server_address)
 
     try:
+        """
         # send data
         message = 'This is the message.  It will be repeated.'
         print('sending "%s"' % message, file=sys.stderr)
@@ -28,7 +42,13 @@ if __name__ == "__main__":
             data = sock.recv(16).decode()
             amount_received += len(data)
             print('received "%s"' % data, file=sys.stderr)
+        """
+        chat(sock)
 
     finally:
-        print('closing socket', file=sys.stderr)
+        print('\nclosing socket', file=sys.stderr)
         sock.close()
+
+"""
+https://stackoverflow.com/questions/17667903/python-socket-receive-large-amount-of-data/57168937
+"""
