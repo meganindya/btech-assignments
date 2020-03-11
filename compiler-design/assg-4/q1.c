@@ -16,6 +16,8 @@ void storeTerminals();
 void storeProductionRules();
 void storeStartSymbol();
 
+void printGrammar();
+
 
 // globals
 int c_nt, c_tm, c_pr;
@@ -30,13 +32,11 @@ int main(int argc, char *argv[]) {
     system("clear");
 
     storeNonTerminals();
-
     storeTerminals();
-
     storeProductionRules();
-
     storeStartSymbol();
 
+    printGrammar();
 
     return 0;
 }
@@ -135,6 +135,7 @@ void storeProductionRules() {
                 }
             }
         }
+        pr[i] = head;
     }
 
     int flag = 0;
@@ -169,4 +170,31 @@ void storeStartSymbol() {
         else
             break;
     } while(1);
+}
+
+
+void printGrammar() {
+    printf("\nGrammar:\n--------\n");
+    printf("\nNon-terminals: %c", nt[0]);
+    for (int i = 1; i < c_nt; i++)
+        printf(", %c", nt[i]);
+    printf("\n");
+    
+    printf("\nTerminals: %c", tm[0]);
+    for (int i = 1; i < c_tm; i++)
+        printf(", %c", tm[i]);
+    printf("\n");
+
+    printf("\nProduction Rules:\n");
+    for (int i = 0; i < c_pr; i++) {
+        node *curr = pr[i];
+        printf("  ");
+        while (curr != NULL) {
+            printf("%c", curr -> val);
+            curr = curr -> next;
+        }
+        printf("\n");
+    }
+
+    printf("\nStart Symbol: %c\n", ss);
 }
