@@ -23,8 +23,11 @@ void storeProductionRules();
 void storeStartSymbol();
 
 void printGrammar();
-
 void groupRules();
+
+void findFirst(char, char *, int *);
+int derivesEpsilon(char);
+void removeDuplicates(char *, int *);
 
 
 // globals
@@ -47,6 +50,18 @@ int main(int argc, char *argv[]) {
     printGrammar();
 
     groupRules();
+
+    printf("\n");
+    for (int i = 0; i < c_nt; i++) {
+        printf("FIRST(%c) : { ", nt[i]);
+        char temp[64]; int len = 0;
+        findFirst(nt[i], temp, &len);
+        removeDuplicates(temp, &len);
+        printf("%c", temp[0]);
+        for (int j = 1; j < len; j++)
+            printf(", %c", temp[j]);
+        printf(" }\n");
+    }
 
     return 0;
 }
@@ -193,7 +208,7 @@ void printGrammar() {
     for (int i = 1; i < c_nt; i++)
         printf(", %c", nt[i]);
     printf("\n");
-    
+
     printf("\nTerminals: %c", tm[0]);
     for (int i = 1; i < c_tm; i++)
         printf(", %c", tm[i]);
@@ -242,7 +257,7 @@ void groupRules() {
     for (int i = 0; i < c_nt; i++) {
         printf("  %c -> ", (prs[i] -> val));
         for (int j = 0; j < (prs[i] -> c_der); j++) {
-            if (j != 0) printf("/");
+            if (j != 0) printf(" | ");
             node *curr = prs[i] -> derivatives[j];
             while (curr != NULL) {
                 printf("%c", curr -> val);
@@ -251,4 +266,69 @@ void groupRules() {
         }
         printf("\n");
     }
+}
+
+
+void findFirst(char NT, char *first, int *k) {
+    int index;
+    for (int i = 0; i < c_nt; i++) {
+        if (nt[i] == NT) {
+            index = i;
+            break;
+        }
+    }
+
+    for (int i = 0; i < (prs[index] -> c_der); i++) {
+        node *curr = prs[index] -> derivatives[i];
+        if (symbols[curr -> val][0] == 2)
+            first[(*k)++] = curr -> val;
+        else {
+            while (curr != NULL && derivesEpsilon(curr -> val)) {
+                findFirst(curr -> val, first, k);
+                curr = curr -> next;
+            }
+            if (curr != NULL)
+                findFirst(curr -> val, first, k);
+        }
+    }
+
+    first[*k] = '\0';
+}
+
+int derivesEpsilon(char NT) {
+    int index;
+    for (int i = 0; i < c_nt; i++) {
+        if (nt[i] == NT) {
+            index = i;
+            break;
+        }
+    }
+
+    int flag = 0;
+    for (int i = 0; i < (prs[index] -> c_der); i++) {
+        if ((prs[index] -> derivatives[i]) -> val == '.') {
+            flag = 1;
+            break;
+        }
+    }
+
+    return flag;
+}
+
+void removeDuplicates(char *temp, int *len) {
+    for (int i = 0; i < (*len); i++) {
+        for (int j = i + 1; j < (*len); j++) {
+            if (temp[j] == temp[i])
+                temp[j] = 10;
+        }
+    }
+
+    int j = 0;
+    for (int i = 0; i < (*len); i++) {
+        while (temp[j] == 10)   j++;
+        temp[i] = temp[j++];
+    }
+
+    for (j = 0; temp[j] != '\0'; j++);
+    *len = j;
 }
