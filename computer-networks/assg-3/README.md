@@ -4,4 +4,4 @@
 
 1. Display the different header fields (Ethernet headers , IP headers and TCPheaders) of the packets intercepted of the NIC of your system using raw socket. Analyze and explain the data.
 
-2. Implement Wake-On-LAN for 10 Pcs in your laboratory so that machines are started automatically at a predefined time everyday (on 5 days of the week). You can use crontab to implement this. Also, explore how you can shutdown automatically a set of machines similarly at a fixed point of time. Design and write a mobile Android app to do the same.
+2. Write a program to schedule booting of ten machines in your laboratory everyday (except Saturday and Sunday) at 10 a.m. in the morning. (Cron and Wake On Lan). Design and write a mobile Android app to do the same.
