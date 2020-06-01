@@ -31,6 +31,8 @@ public class UDPServer extends Thread {
             else
                 System.out.println();
         }
+
+        sc.close();
     }
 
     public static void chat(DatagramSocket sock) throws IOException {
