@@ -50,26 +50,26 @@ SERVER: bye
 ```
 starting up on localhost port 4200
 waiting for a connection
-connection from 127.0.0.1 port 49284
+connection from 127.0.0.1 port 43458
 
-CLIENT: HI
-SERVER: Hello
-CLIENT: exit?
-SERVER: bye
+CLIENT: Hi
+SERVER: Hey
+CLIENT: Wanna hear an interesting joke?
+SERVER: no
+CLIENT: bye
 
 closing socket
 ```
 
 #### Client
 ```
-starting up on localhost port 4200
-waiting for a connection
-connection from 127.0.0.1 port 49284
+connecting to localhost port 4200
 
-CLIENT: HI
-SERVER: Hello
-CLIENT: exit?
-SERVER: bye
+CLIENT: Hi
+SERVER: Hey
+CLIENT: Wanna hear an interesting joke?
+SERVER: no
+CLIENT: bye
 
 closing socket
 ```
