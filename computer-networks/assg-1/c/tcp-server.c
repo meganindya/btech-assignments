@@ -15,7 +15,6 @@
  *
  * @author Anindya Kundu <anindya.k22@outlook.com>
  * @date 2020-06-02
- * @copyright 2020 Anindya Kundu
  */
 
 #include <stdio.h>      /** @include standard buffered input/output */
