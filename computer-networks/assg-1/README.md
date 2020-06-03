@@ -2,7 +2,7 @@
 
 ## Question
 
-Write a simple TCP Server and TCP Client.
+Write a simple **`TCP`** `Server` and **`TCP`** `Client`.
 
 ## Example Console Output
 
@@ -11,31 +11,37 @@ Write a simple TCP Server and TCP Client.
 #### Server
 
 ```
-starting up on localhost port 4200
-waiting for a connection
-connection from 127.0.0.1 port 49284
+-- socket created successfully
+-- socket binded successfully
 
-CLIENT: HI
-SERVER: Hello
+==========
+-- server listening on port 4200
+-- client accepted by server
+
+CLIENT: Hello
+SERVER: Hi
 CLIENT: exit?
 SERVER: bye
 
-closing socket
+-- server exit
+
+-- socket closed
 ```
 
 #### Client
 
 ```
-starting up on localhost port 4200
-waiting for a connection
-connection from 127.0.0.1 port 49284
+-- socket created successfully
+-- connected to server
 
-CLIENT: HI
-SERVER: Hello
+CLIENT: Hello
+SERVER: Hi
 CLIENT: exit?
 SERVER: bye
 
-closing socket
+-- client exit
+
+-- socket closed
 ```
 
 ### Python
