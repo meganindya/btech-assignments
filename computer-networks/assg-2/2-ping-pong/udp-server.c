@@ -108,6 +108,9 @@ void _pong(int sockfd)
         bzero(buff, sizeof(buff));
         recvfrom(sockfd, buff, sizeof(buff), 0, (SADR*)&cli_addr, &addr_len);
 
+        // simulate 1 sec delay (although too high)
+        sleep(1);
+
         // send pong
         sendto(sockfd, "pong", 4, 0, (SADR*)&cli_addr, sizeof(cli_addr));
 

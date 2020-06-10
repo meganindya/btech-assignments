@@ -111,9 +111,6 @@ void _pingpong(int sockfd)
         bzero(buff, sizeof(buff));
         recvfrom(sockfd, buff, sizeof(buff), 0, NULL, NULL);
 
-        // simulate 1 sec delay
-        sleep(1);
-
         // record final time
         struct timeval end;
         gettimeofday(&end, NULL);
