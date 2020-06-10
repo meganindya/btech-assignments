@@ -20,6 +20,8 @@ Write a simple **`TCP`** `Server` and **`TCP`** `Client`.
 
 CLIENT: Hello
 SERVER: Hi
+CLIENT: Wanna hear an interesting joke?
+SERVER: No
 CLIENT: exit?
 SERVER: bye
 
@@ -36,6 +38,8 @@ SERVER: bye
 
 CLIENT: Hello
 SERVER: Hi
+CLIENT: Wanna hear an interesting joke?
+SERVER: No
 CLIENT: exit?
 SERVER: bye
 
