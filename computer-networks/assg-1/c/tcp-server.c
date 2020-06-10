@@ -115,6 +115,7 @@ int main(int argc, char *argv[])
 
     // close socket after chatting
     close(sockfd);
+    close(connfd);
     printf("\n-- socket closed\n");
 }
 
@@ -134,7 +135,7 @@ void _chat(int connfd)
     {
         // clear buffer and receive client message
         bzero(buff, BUFF);
-        read(connfd, buff, sizeof(buff));
+        recv(connfd, buff, sizeof(buff), 0);
         printf("CLIENT: %s\n", buff);
 
         // if message is "bye", exit chat
@@ -147,10 +148,11 @@ void _chat(int connfd)
         // clear buffer and store server message
         bzero(buff, BUFF);
         printf("SERVER: ");
-        scanf("%s", buff);
+        fgets(buff, BUFF, stdin);
+        buff[strlen(buff) - 1] = '\0';
 
         // send buffer to client
-        write(connfd, buff, sizeof(buff));
+        send(connfd, buff, sizeof(buff), 0);
 
         // if message is "bye", exit chat
         if (strncmp("bye", buff, 3) == 0)

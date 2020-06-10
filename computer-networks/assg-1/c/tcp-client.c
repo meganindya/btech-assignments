@@ -106,10 +106,11 @@ void _chat(int sockfd)
         // clear buffer and store client message
         bzero(buff, sizeof(buff));
         printf("CLIENT: ");
-        scanf("%s", buff);
+        fgets(buff, BUFF, stdin);
+        buff[strlen(buff) - 1] = '\0';
 
         // send buffer to server
-        write(sockfd, buff, sizeof(buff));
+        send(sockfd, buff, sizeof(buff), 0);
 
         // if message is "bye", exit chat
         if (strncmp("bye", buff, 3) == 0)
@@ -120,7 +121,7 @@ void _chat(int sockfd)
 
         // clear buffer and receive server message
         bzero(buff, sizeof(buff));
-        read(sockfd, buff, sizeof(buff));
+        recv(sockfd, buff, sizeof(buff), 0);
         printf("SERVER: %s\n", buff);
 
         // if message is "bye", exit chat
