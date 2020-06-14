@@ -9,7 +9,7 @@
  * @ref https://www.gnu.org/software/libc/manual/html_node/Feature-Test-Macros.html
  *
  * ****************************************************************************
- * compile using [cc -pack_headers 1-raw-packet-headers.c]
+ * compile using [cc -o pack_headers 1-raw-packet-headers.c]
  * run using [./pack_headers]
  * ****************************************************************************
  *
