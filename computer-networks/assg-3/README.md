@@ -51,3 +51,16 @@ TCP Header
 
 -- socket closed
 ```
+
+### Question 2
+
+For console input: ```./wol d0:53:49:96:c4:e8 192.168.0.5```
+
+Output:
+```
+Packet destination: d0:53:49:96:c4:e8
+
+Broadcast address: 192.168.0.5
+
+-- Wake Up packet sent
+```
