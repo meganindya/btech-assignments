@@ -6,6 +6,8 @@ Write a web crawler in `C` and/or `Python`.
 
 ## Example Console Output
 
+for seed: ```https://icmc2021.in```
+
 ```
 ICMC 2021:
   https://icmc2021.in
