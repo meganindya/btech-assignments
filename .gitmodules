@@ -1,3 +1,6 @@
 [submodule "internet-and-web-technology/codebase"]
 	path = internet-and-web-technology/codebase
 	url = https://github.com/meganindya/library-management-system/
+[submodule "database-management-system/project"]
+	path = database-management-system/project
+	url = https://github.com/meganindya/dbms-project
