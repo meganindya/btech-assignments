@@ -1,17 +1,17 @@
 #include <stdio.h>
 
-int add_inv_mod(int a, int n)
+int mod_inv_add(int a, int m)
 {
-    return n - (a % n);
+    return m - (a % m);
 }
 
 int main(int argc, char *argv[])
 {
-    int a, n;
+    int a, m;
     printf("Calculation of modular additive inverse\n--------\n");
     printf("Enter number (a): ");
     scanf("%d", &a);
-    printf("Enter number to take mod with (n): ");
-    scanf("%d", &n);
-    printf("\nAdditive inverse of %d (mod %d) is %d\n", a, n, add_inv_mod(a, n));
+    printf("Enter number to take mod with (m): ");
+    scanf("%d", &m);
+    printf("\nAdditive inverse of %d (mod %d) is %d\n", a, m, mod_inv_add(a, m));
 }
