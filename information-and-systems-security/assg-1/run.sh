@@ -10,7 +10,7 @@ then
         gcc A-2-multiplicative-inverse.c
     elif [ "$1" == "A3" ]
     then
-        gcc A-3-matrix-innverse.c
+        gcc A-3-matrix-inverse.c -lm
     elif [ "$1" == "A4" ]
     then
         gcc A-4-diffie-hellman.c -lm
