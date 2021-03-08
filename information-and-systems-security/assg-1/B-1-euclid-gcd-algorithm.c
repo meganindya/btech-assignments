@@ -23,7 +23,7 @@ int gcd(int a, int b)
 int main(int argc, char *argv[])
 {
     int a, b;
-    printf("\nCalculation of GCD by Euclid's algorithm\n--------\n");
+    printf("\nCalculation of GCD by Euclid's Algorithm\n--------\n");
     printf("Enter number (a): ");
     scanf("%d", &a);
     printf("Enter number (b): ");
