@@ -13,7 +13,7 @@ then
         gcc A-3-matrix-innverse.c
     elif [ "$1" == "A4" ]
     then
-        gcc A-4-diffie-hellman.c
+        gcc A-4-diffie-hellman.c -lm
     elif [ "$1" == "B1" ]
     then
         gcc B-1-euclid-gcd-algorithm.c
