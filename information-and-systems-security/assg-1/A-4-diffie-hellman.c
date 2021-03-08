@@ -1,7 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
+#include <sys/wait.h>
 #include <math.h>
 
-// returns a ^ b (mod P)
+/*
+ * Returns value of a ^ b (mod P).
+ */
 long long int power(long long int a, long long int b, long long int P)
 {
     return b == 1 ? a : (((long long int)pow(a, b)) % P);
@@ -9,40 +16,100 @@ long long int power(long long int a, long long int b, long long int P)
 
 int main(int argc, char *argv[])
 {
-    printf("\nDiffie-Hellman key exchange\n--------\n");
-
-    // Public keys (prime) P and (primitive root) G are agreed upon
-    long long int P = 23;
-    printf("The value of P taken is %lld\n", P);
-    long long int G = 9;
-    printf("The value of G taken is %lld\n\n", G);
-
-    long long int a;
-    // Private key a
-    printf("Enter private key of a: ");
-    scanf("%lld", &a);
-
-    long long int b;
-    // Private key b
-    printf("Enter private key of b: ");
-    scanf("%lld", &b);
-
-    printf("\n");
-    // Generated key from a
-    long long int x = power(G, a, P);
-    printf("Generated key from a is G^a (mod P) = %lld\n", x);
-    // Generated key from b
-    long long int y = power(G, b, P);
-    printf("Generated key from b is G^b (mod P) = %lld\n", y);
-
-    // Generate secret key after key exchange
-    long long int ka = power(y, a, P); // secret key for a
-    long long int kb = power(x, b, P); // secret key for b
-
-    printf("\n");
-    printf("Secret key for a is %lld\n", ka);
-    printf("Secret Key for b is %lld\n", kb);
     printf("\n");
 
-    return 0;
+    long long int P = 23; // prime number P
+    printf("Prime Number (P): %lld\n", P);
+
+    long long int G = 9; // primitve root for P, G
+    printf("Primitive Root (G): %lld\n\n", G);
+
+    // pipe 1 to send from parent to child
+    int fd1[2]; // used to store two ends of pipe 1
+
+    // pipe 2 to send from child to parent
+    int fd2[2]; // used to store two ends of pipe 2
+
+    if (pipe(fd1) == -1 || pipe(fd2) == -1)
+    {
+        fprintf(stderr, "Pipe Failed");
+        return 1;
+    }
+
+    pid_t pid = fork();
+    if (pid < 0)
+    {
+        fprintf(stderr, "fork Failed");
+        return 1;
+    }
+
+    // parent process
+    else if (pid > 0)
+    {
+        // private key of parent
+        long long int a;
+        FILE *fp = fopen("A-4-a.txt", "r");
+        fscanf(fp, "%lld", &a);
+        fclose(fp);
+
+        printf("Private key of process A (a): %lld\n", a);
+        // generated key of parent
+        long long int x = power(G, a, P), y;
+        printf("Generated public key from process A is x = G ^ a (mod P) = %lld\n", x);
+
+        // close reading end of pipe 1
+        close(fd1[0]);
+
+        // write x and close writing end of pipe 1
+        write(fd1[1], &x, sizeof(x));
+        close(fd1[1]);
+
+        // wait for child to send
+        wait(NULL);
+
+        // read from child
+        read(fd2[0], &y, sizeof(y));
+
+        // secret key for parent
+        long long int ka = power(y, a, P);
+        printf("Shared secret key at A (ka): %lld\n", ka);
+
+        // close reading end of pipe 2
+        close(fd2[0]);
+
+        printf("\n");
+        return 0;
+    }
+
+    // child process
+    else
+    {
+        // private key of child
+        long long int b;
+        FILE *fp = fopen("A-4-b.txt", "r");
+        fscanf(fp, "%lld", &b);
+        fclose(fp);
+
+        printf("Private key of process B (b): %lld\n", b);
+        // generated key of child
+        long long int x, y = power(G, b, P);
+        printf("\nGenerated public key from process B is y = G ^ b (mod P) = %lld\n", y);
+
+        // read from parent
+        read(fd1[0], &x, sizeof(x));
+
+        // secret key for child
+        long long int kb = power(x, b, P);
+        printf("\nShared secret key at B (kb): %lld\n", kb);
+
+        // close both reading ends
+        close(fd1[0]);
+        close(fd2[0]);
+
+        // write y and close writing end of pipe 2
+        write(fd2[1], &y, sizeof(y));
+        close(fd2[1]);
+
+        exit(0);
+    }
 }
