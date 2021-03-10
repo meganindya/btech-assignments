@@ -2,7 +2,7 @@
 
 A shell script is added to automate the process of compiling, running, and removing (after running complete) the executable.
 
-Screenshots of execution examples are in [sample](assg-1/sample) directory.
+Screenshots of execution examples are in [sample](sample) directory.
 
 ## To run
 
