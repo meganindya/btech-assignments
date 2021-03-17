@@ -14,4 +14,5 @@ A repository of my BTech assignments for papers:
 * IT652: &nbsp;&nbsp;&nbsp;&nbsp; [Compiler Design](./compiler-design/) (C)
 * IT751: &nbsp;&nbsp;&nbsp;&nbsp; [Software Engineering](./software-engineering/) (SE Concepts)
 * IT752: &nbsp;&nbsp;&nbsp;&nbsp; [Internet & Web Technology](./internet-and-web-technology/) (Web Development)
-* IT801: &nbsp;&nbsp;&nbsp;&nbsp; [Information and Systems Security](./information-and-systems-security/) (C)
+* IT851: &nbsp;&nbsp;&nbsp;&nbsp; [Information and Systems Security](./information-and-systems-security/) (C)
+* IT583: &nbsp;&nbsp;&nbsp;&nbsp; [Image Processing and Pattern Recognition](./image-processing-pattern-recognition) (Python)
