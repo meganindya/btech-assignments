@@ -14,6 +14,9 @@ then
     elif [ "$1" == "2A" ]
     then
         gcc 2-a-attack-cipher-shift.c
+    elif [ "$1" == "2B" ]
+    then
+        gcc 2-b-attack-cipher-multiplicative.c
     else
         echo "invalid question"
     fi
