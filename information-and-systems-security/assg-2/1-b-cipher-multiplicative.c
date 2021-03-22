@@ -1,25 +1,8 @@
 #include <stdio.h>  // printf, scanf
 #include <stdlib.h> // abs
-#define MOD 26
 
-/*
- * Utility function that calculates the modular multiplicative inverse of a number w.r.t. 26.
- *
- * a: input number
- *
- * returns: multiplicative inverse of a (mod 26)
- */
-int mod_inv_mul(int a)
-{
-    for (int x = 1; x < MOD; x++)
-    {
-        if (((a < 0 ? (MOD - (abs(a) % MOD)) : (a % MOD)) * (x % MOD)) % MOD == 1)
-        {
-            return x;
-        }
-    }
-    return -1;
-}
+#include "utils.h"
+#define MOD 26
 
 /*
  * Cipher multiplicative encrypts (in place) all characters of a string w.r.t a key.
@@ -32,7 +15,7 @@ void encrypt(char *s, int key)
     printf("    for key = %d\n\n", key);
     for (int i = 0; s[i] != '\0'; i++)
     {
-        char enc_char = 'A' + (((s[i] - 'A') * key) % MOD);
+        char enc_char = 'A' + mod_26((s[i] - 'A') * key);
         printf(
             "    %c (%2d)  ->  [(%2d × %d) mod %d] = [%2d mod %d]  %c (%2d)\n",
             s[i],
@@ -56,11 +39,11 @@ void encrypt(char *s, int key)
  */
 void decrypt(char *s, int key)
 {
-    int key_inv = mod_inv_mul(key);
+    int key_inv = mod_26_mul_inv(key);
     printf("    for key = %d\n    key multiplicative inverse (mod %d) = %d\n\n", key, MOD, key_inv);
     for (int i = 0; s[i] != '\0'; i++)
     {
-        char dec_char = 'A' + (((s[i] - 'A') * key_inv) % MOD);
+        char dec_char = 'A' + mod_26((s[i] - 'A') * key_inv);
         printf(
             "    %c (%2d)  ->  [(%2d × %d) mod %d] = [%3d mod %d]  %c (%2d)\n",
             s[i],
@@ -104,7 +87,7 @@ int main(int argc, char *argv[])
         printf("Enter cipher multiplicative key: ");
         scanf("%d", &key);
         repeat = 0;
-        if (mod_inv_mul(key) == -1)
+        if (mod_26_mul_inv(key) == -1)
         {
             printf("  Invalid key, retry\n");
             repeat = 1;

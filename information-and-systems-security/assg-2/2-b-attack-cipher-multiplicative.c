@@ -1,39 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "utils.h"
 #define MOD 26
-
-/*
- * Utility function that returns modulo of a number w.r.t. another.
- *
- * a: input number
- * m: number to take modulus with
- * 
- * returns: a mod m
- */
-int mod(int a, int m)
-{
-    return a < 0 ? m - (abs(a) % m) : (a) % m;
-}
-
-/*
- * Utility function that calculates the modular multiplicative inverse of a number w.r.t. 26.
- *
- * a: input number
- *
- * returns: multiplicative inverse of a (mod 26)
- */
-int mod_mul_inv(int a, int m)
-{
-    for (int x = 1; x < m; x++)
-    {
-        if (mod(mod(a, m) * mod(x, m), m) == 1)
-        {
-            return x;
-        }
-    }
-    return -1;
-}
 
 /*
  * Performs shift cipher decripytion against all valid multiplicative inverse values in [0, m - 1].
@@ -44,7 +14,7 @@ void attack(char *s)
 {
     for (int i = 0; i < MOD; i++)
     {
-        int key_inv = mod_mul_inv(i, MOD);
+        int key_inv = mod_26_mul_inv(i);
         if (key_inv == -1)
         {
             printf("    for key = %d\n", i);
@@ -57,7 +27,7 @@ void attack(char *s)
         strcpy(enc, s);
         for (int j = 0; enc[j] != '\0'; j++)
         {
-            enc[j] = 'A' + mod((enc[j] - 'A') * key_inv, MOD);
+            enc[j] = 'A' + mod_26((enc[j] - 'A') * key_inv);
         }
         printf("decoded string: %s\n\n", enc);
     }

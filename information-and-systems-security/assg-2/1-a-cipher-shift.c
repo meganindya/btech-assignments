@@ -1,18 +1,8 @@
 #include <stdio.h>  // printf, scanf
 #include <stdlib.h> // abs
-#define MOD 26
 
-/*
- * Utility function that returns modulo of a number w.r.t. 26.
- *
- * a: input number
- * 
- * returns: a mod 26
- */
-int mod(int a)
-{
-    return a < 0 ? MOD - (abs(a) % MOD) : (a) % MOD;
-}
+#include "utils.h"
+#define MOD 26
 
 /*
  * Cipher shifts (in place) all characters of a string by a distance.
@@ -27,7 +17,7 @@ void encrypt(char *s, int z)
         char c = s[i];
         int c_n = c - 'A';
         int add_n = c_n + z;
-        int n_enc = mod(add_n);
+        int n_enc = mod_26(add_n);
         char c_enc = n_enc + 'A';
         printf(
             "    %c (%2d)  ->  [(%2d + %d) mod %d] = [%2d mod %d]  %c (%2d)\n",
@@ -57,7 +47,7 @@ void decrypt(char *s, int z)
         char c = s[i];
         int c_n = c - 'A';
         int sub_n = c_n - z;
-        int n_dec = mod(sub_n);
+        int n_dec = mod_26(sub_n);
         char c_dec = n_dec + 'A';
         printf(
             "    %c (%2d)  ->  [(%2d + (-%d)) mod %d] = [%2d mod %d]  %c (%2d)\n",
