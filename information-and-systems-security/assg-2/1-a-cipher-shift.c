@@ -54,14 +54,13 @@ void decrypt(char *s, int z)
 {
     for (int i = 0; s[i] != '\0'; i++)
     {
-        char dec_char = 'A' + mod_add(s[i] - 'A', -z);
         char c = s[i];
         int c_n = c - 'A';
         int sub_n = c_n - z;
         int n_dec = mod(sub_n);
         char c_dec = n_dec + 'A';
         printf(
-            "    %c (%2d)  ->  [(%2d + %d) mod %d] = [%2d mod %d]  %c (%2d)\n",
+            "    %c (%2d)  ->  [(%2d + (-%d)) mod %d] = [%2d mod %d]  %c (%2d)\n",
             c,
             c_n,
             c_n,
@@ -71,7 +70,7 @@ void decrypt(char *s, int z)
             MOD,
             c_dec,
             n_dec);
-        s[i] = dec_char;
+        s[i] = c_dec;
     }
 }
 

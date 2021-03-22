@@ -57,12 +57,12 @@ void encrypt(char *s, int key)
 void decrypt(char *s, int key)
 {
     int key_inv = mod_inv_mul(key);
-    printf("    for key = %d\n    key multiplicative inverse = %d\n\n", key, key_inv);
+    printf("    for key = %d\n    key multiplicative inverse (mod %d) = %d\n\n", key, MOD, key_inv);
     for (int i = 0; s[i] != '\0'; i++)
     {
         char dec_char = 'A' + (((s[i] - 'A') * key_inv) % MOD);
         printf(
-            "    %c (%2d)  ->  [(%2d × %d) mod %d] = [%2d mod %d]  %c (%2d)\n",
+            "    %c (%2d)  ->  [(%2d × %d) mod %d] = [%3d mod %d]  %c (%2d)\n",
             s[i],
             s[i] - 'A',
             s[i] - 'A',
