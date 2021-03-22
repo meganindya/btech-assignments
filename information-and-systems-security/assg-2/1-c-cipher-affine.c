@@ -23,7 +23,7 @@ int mod(int a, int m)
  *
  * returns: additive inverse of a (mod 26)
  */
-int mod_mul_add(int a, int m)
+int mod_add_inv(int a, int m)
 {
     return -mod(a, m);
 }
@@ -83,7 +83,7 @@ void encrypt(char *s, int key_mul, int key_add)
  */
 void decrypt(char *s, int key_mul, int key_add)
 {
-    int key_add_inv = mod_mul_add(key_add, MOD);
+    int key_add_inv = mod_add_inv(key_add, MOD);
     int key_mul_inv = mod_mul_inv(key_mul, MOD);
     printf("    for key = %d\n", key_mul);
     printf("    key additive inverse (mod %d) = %d\n", MOD, key_add_inv);
