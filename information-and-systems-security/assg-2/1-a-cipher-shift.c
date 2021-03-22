@@ -50,7 +50,7 @@ void decrypt(char *s, int z)
         int n_dec = mod_26(sub_n);
         char c_dec = n_dec + 'A';
         printf(
-            "    %c (%2d)  ->  [(%2d + (-%d)) mod %d] = [%2d mod %d]  %c (%2d)\n",
+            "    %c (%2d)  ->  [(%2d - %d) mod %d] = [%2d mod %d]  %c (%2d)\n",
             c,
             c_n,
             c_n,

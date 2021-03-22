@@ -49,7 +49,7 @@ void decrypt(char *s, int key_mul, int key_add)
     {
         char dec_char = 'A' + mod_26(((s[i] - 'A') + key_add_inv) * key_mul_inv);
         printf(
-            "    %c (%2d)  ->  [((%2d + (%d)) × %d) mod %d] = [%3d mod %d]  %c (%2d)\n",
+            "    %c (%2d)  ->  [((%2d %d) × %d) mod %d] = [%3d mod %d]  %c (%2d)\n",
             s[i],
             s[i] - 'A',
             s[i] - 'A',
