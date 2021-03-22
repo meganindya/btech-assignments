@@ -3,3 +3,4 @@ test/
 .vscode/
 *.class
 *.old
+.DS_STORE
