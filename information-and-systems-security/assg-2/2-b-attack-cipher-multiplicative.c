@@ -47,10 +47,11 @@ void attack(char *s)
         int key_inv = mod_mul_inv(i, MOD);
         if (key_inv == -1)
         {
-            printf("for key = %d\nkey multiplicative inverse doesn't exist, this key isn't valid\n\n", i);
+            printf("    for key = %d\n", i);
+            printf("    key multiplicative inverse doesn't exist, this key isn't valid\n\n");
             continue;
         }
-        printf("for key = %d\nkey multiplicative inverse (mod %d) = %d\n", i, MOD, key_inv);
+        printf("    for key = %d\n    key multiplicative inverse (mod %d) = %d\n", i, MOD, key_inv);
 
         char enc[64];
         strcpy(enc, s);

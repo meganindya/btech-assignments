@@ -39,7 +39,7 @@ void attack(char *s)
     for (int i = 0; i < MOD; i++)
     {
         int key_inv = mod_add_inv(i, MOD);
-        printf("for key = %d\nkey additive inverse (mod %d) = %d\n", i, MOD, key_inv);
+        printf("    for key = %d\n    key additive inverse (mod %d) = %d\n", i, MOD, key_inv);
 
         char enc[64];
         strcpy(enc, s);
