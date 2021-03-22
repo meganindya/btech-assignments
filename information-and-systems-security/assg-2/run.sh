@@ -11,6 +11,9 @@ then
     elif [ "$1" == "1C" ]
     then
         gcc 1-c-cipher-affine.c
+    elif [ "$1" == "2A" ]
+    then
+        gcc 2-a-attack-cipher-shift.c
     else
         echo "invalid question"
     fi
