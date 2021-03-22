@@ -8,6 +8,9 @@ then
     elif [ "$1" == "1B" ]
     then
         gcc 1-b-cipher-multiplicative.c
+    elif [ "$1" == "1C" ]
+    then
+        gcc 1-c-cipher-affine.c
     else
         echo "invalid question"
     fi
