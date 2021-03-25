@@ -4,3 +4,4 @@ test/
 *.class
 *.old
 .DS_STORE
+.ipynb_checkpoints
