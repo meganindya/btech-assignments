@@ -287,7 +287,7 @@ void transpose_mat(int ord_mat, int **mat)
 {
     for (int r = 0; r < ord_mat; r++)
     {
-        for (int c = 0; c <= ((ord_mat - 1) >> 1); c++)
+        for (int c = 0; c < r; c++)
         {
             int temp = mat[r][c];
             mat[r][c] = mat[c][r];

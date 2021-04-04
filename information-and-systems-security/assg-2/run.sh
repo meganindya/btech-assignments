@@ -3,7 +3,7 @@
 if [ "$#" != "0" ];
 then
     if [ $1 == "1A" ] || [ $1 == "1B" ] || [ $1 == "1C" ] ||
-       [ $1 == "2A" ] || [ $1 == "2B" ] || [ $1 == "2C" ]
+       [ $1 == "1E" ] || [ $1 == "2A" ] || [ $1 == "2B" ] || [ $1 == "2C" ]
     then
         gcc -c utils.c -o utils.o
         ar rcs libutils.a utils.o
@@ -20,6 +20,10 @@ then
     elif [ "$1" == "1C" ]
     then
         gcc -o main.o -c 1-c-cipher-affine.c
+        gcc main.o -L. -lutils
+    elif [ "$1" == "1E" ]
+    then
+        gcc -o main.o -c 1-e-cipher-hill.c
         gcc main.o -L. -lutils
     elif [ "$1" == "2A" ]
     then
@@ -39,7 +43,7 @@ then
 
     ./a.out
     if [ $1 == "1A" ] || [ $1 == "1B" ] || [ $1 == "1C" ] ||
-       [ $1 == "2A" ] || [ $1 == "2B" ] || [ $1 == "2C" ]
+       [ $1 == "1E" ] || [ $1 == "2A" ] || [ $1 == "2B" ] || [ $1 == "2C" ]
     then
         rm utils.o && rm libutils.a && rm main.o
     fi
