@@ -44,7 +44,7 @@ void decrypt(char *s, int key_mul, int key_add)
     int key_mul_inv = mod_26_mul_inv(key_mul);
     printf("    for key (a, b) = (%d, %d)\n", key_mul, key_add);
     printf("    key (a = %d) multiplicative inverse (mod %d) = %d\n", key_mul, MOD, key_mul_inv);
-    printf("    key (b = %d) additive inverse (mod %d) = %d\n", key_add, MOD, key_add_inv);
+    printf("    key (b = %d) additive inverse (mod %d) = %d\n\n", key_add, MOD, key_add_inv);
     for (int i = 0; s[i] != '\0'; i++)
     {
         char dec_char = 'A' + mod_26(((s[i] - 'A') + key_add_inv) * key_mul_inv);

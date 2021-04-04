@@ -59,6 +59,12 @@ void encrypt(char *s, int ord_key, int **key)
  */
 void decrypt(char *s, int ord_key, int **key)
 {
+    printf("  Encrypted string:\n");
+    for (int i = 0; i < strlen(s); i++)
+    {
+        printf("    %c (%2d)\n", s[i], s[i] - 'A');
+    }
+
     int **key_inv;
     key_inv = malloc((ord_key) * sizeof *key_inv);
     for (int i = 0; i < ord_key; i++)
@@ -67,7 +73,7 @@ void decrypt(char *s, int ord_key, int **key)
     }
     mat_invert(ord_key, key, key_inv);
 
-    printf("  Inverted key:\n");
+    printf("\n  Inverted key:\n");
     for (int r = 0; r < ord_key; r++)
     {
         printf("    ");
