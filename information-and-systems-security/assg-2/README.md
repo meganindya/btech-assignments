@@ -9,6 +9,8 @@ A shell script is added to automate the process of compiling, running, and remov
 - `./run.sh 1A` - Shift cipher
 - `./run.sh 1B` - Multiplicative cipher
 - `./run.sh 1C` - Affine cipher
+- `./run.sh 1D` - Playfair cipher
+- `./run.sh 1E` - Hill cipher
 - `./run.sh 2A` - Attack shift cipher
 - `./run.sh 2B` - Attack multiplicative cipher
 - `./run.sh 2C` - Attack affine cipher
