@@ -15,9 +15,8 @@ then
         gcc main.o -L. -lutils
     elif [ "$1" == "2A" ]
     then
-        1
-        # gcc -o main.o -c 1-b-cipher-multiplicative.c
-        # gcc main.o -L. -lutils
+        gcc -o main.o -c 2-a-cipher-vigenere.c
+        gcc main.o -L. -lutils
     elif [ "$1" == "2B" ]
     then
         1
