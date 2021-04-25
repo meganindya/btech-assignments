@@ -65,11 +65,11 @@ void encrypt(char *s, char *k)
         printf("\n");
     }
 
-    for (int c = 0; c < BLK; c++)
+    for (int r = 0; r < rlen; r++)
     {
-        for (int r = 0; r < rlen; r++)
+        for (int c = 0; c < BLK; c++)
         {
-            s[c * rlen + r] = trx[r][c];
+            s[r * BLK + c] = trx[r][c];
         }
     }
 }
@@ -86,11 +86,11 @@ void decrypt(char *s, char *k)
     int rlen = len / BLK + (len % BLK == 0 ? 0 : 1);
     char mat[rlen][BLK];
 
-    for (int c = 0; c < BLK; c++)
+    for (int r = 0; r < rlen; r++)
     {
-        for (int r = 0; r < rlen; r++)
+        for (int c = 0; c < BLK; c++)
         {
-            mat[r][c] = s[c * rlen + r];
+            mat[r][c] = s[r * BLK + c];
         }
     }
 
