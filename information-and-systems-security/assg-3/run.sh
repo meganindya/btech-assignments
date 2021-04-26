@@ -23,9 +23,8 @@ then
         gcc main.o -L. -lutils
     elif [ "$1" == "3" ]
     then
-        1
-        # gcc -o main.o -c 1-c-cipher-affine.c
-        # gcc main.o -L. -lutils
+        gcc -o main.o -c 3-cipher-permutation.c
+        gcc main.o -L. -lutils
     elif [ "$1" == "4A" ]
     then
         1
