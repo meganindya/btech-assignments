@@ -27,9 +27,8 @@ then
         gcc main.o -L. -lutils
     elif [ "$1" == "4A" ]
     then
-        1
-        # gcc -o main.o -c 1-d-cipher-playfair.c
-        # gcc main.o -L. -lutils
+        gcc -o main.o -c 4-a-cipher-one-time-pad.c
+        gcc main.o -L. -lutils
     elif [ "$1" == "4B" ]
     then
         1
