@@ -197,8 +197,8 @@ void decrypt(char *s, char *k)
         }
         printf(" ");
     }
-    printf("\n");
 
+    printf("\n  ");
     for (int i = 0; i < len_s; i++)
     {
         char bin[5];
@@ -208,6 +208,11 @@ void decrypt(char *s, char *k)
         }
         s[i] = binary_to_int(bin) + 'A';
     }
+    for (int i = 0; i < len_s; i++)
+    {
+        printf(" (%c)  ", s[i]);
+    }
+    printf("\n");
 }
 
 /*

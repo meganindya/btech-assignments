@@ -198,8 +198,8 @@ void decrypt(char *s, char *k)
         }
         printf(" ");
     }
-    printf("\n");
 
+    printf("\n  ");
     for (int i = 0; i < len_s; i++)
     {
         char bin[5];
@@ -209,6 +209,11 @@ void decrypt(char *s, char *k)
         }
         s[i] = binary_to_int(bin) + 'A';
     }
+    for (int i = 0; i < len_s; i++)
+    {
+        printf(" (%c)  ", s[i]);
+    }
+    printf("\n");
 }
 
 // -----------------------------------------------------------------------------
@@ -244,7 +249,7 @@ int main(int argc, char *argv[])
             k[j] = '0' + rand() % 2;
         }
     }
-    printf("\nOne Time Key:\n  ");
+    printf("\nPseudorandom One Time Key:\n  ");
     for (int i = 0; i < strlen(s); i++)
     {
         for (int j = i * 5; j < (i + 1) * 5; j++)
