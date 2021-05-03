@@ -31,9 +31,8 @@ then
         gcc main.o -L. -lutils
     elif [ "$1" == "4B" ]
     then
-        1
-        # gcc -o main.o -c 1-e-cipher-hill.c
-        # gcc main.o -L. -lutils
+        gcc -o main.o -c 4-b-cipher-one-time-pad-cryptanalysis.c
+        gcc main.o -L. -lutils
     else
         echo "invalid question"
     fi
