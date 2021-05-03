@@ -308,10 +308,8 @@ void cryptanalyze(char *s, char *p, char *k)
         exit(-1);
     }
 
-    a = mod_26_mul_inv(s1 - s0) * mod_26(s2 - s1);
-    a = (a + MOD) % MOD;
-    b = mod_26_mul_inv(s1 - s0) * mod_26(s1 * s1 - s0 * s2);
-    b = (b + MOD) % MOD;
+    a = mod_26(mod_26_mul_inv(s1 - s0) * mod_26(s2 - s1));
+    b = mod_26(mod_26_mul_inv(s1 - s0) * mod_26(s1 * s1 - s0 * s2));
 
     printf("\n  Solution:\n");
     printf("    a = %d\n    b = %d\n", a, b);
