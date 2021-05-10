@@ -196,6 +196,75 @@ void encrypt(char **blocks, int blocks_n, char **keys, char *mode)
     }
     else if (strcmp(mode, "CBC") == 0)
     {
+        for (int k = 0; k < 4; k++)
+        {
+            printf("  Round %d:\n  ----\n", k + 1);
+
+            char key[8];
+            printf("    Key:    ");
+            for (int j = 0; j < 8; j++)
+            {
+                key[j] = keys[k][j];
+                printf("%c", key[j]);
+            }
+            printf("\n");
+
+            char c_bin[8] = "01101001";
+            for (int i = 0; i < blocks_n; i++)
+            {
+                char block[8];
+                for (int j = 0; j < 8; j++)
+                    block[j] = blocks[i][j];
+                mix(block, c_bin);
+                encrypt_block(block, key, k == 3 ? 1 : 0);
+                for (int j = 0; j < 8; j++)
+                    c_bin[j] = block[j];
+                for (int j = 0; j < 8; j++)
+                    blocks[i][j] = block[j];
+            }
+
+            printf("    Blocks: ");
+            for (int i = 0; i < blocks_n; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                    printf("%c", blocks[i][j]);
+                printf(" ");
+            }
+            printf("\n\n");
+        }
+
+        printf("  Whitening:\n  ----\n");
+
+        char key[8];
+        printf("    Key:    ");
+        for (int j = 0; j < 8; j++)
+        {
+            key[j] = keys[4][j];
+            printf("%c", key[j]);
+        }
+        printf("\n");
+
+        for (int i = 0; i < blocks_n; i++)
+        {
+            char block[8];
+            for (int j = 0; j < 8; j++)
+                block[j] = blocks[i][j];
+            char key[8];
+            for (int j = 0; j < 8; j++)
+                key[j] = keys[4][j];
+            mix(block, key);
+            for (int j = 0; j < 8; j++)
+                blocks[i][j] = block[j];
+        }
+
+        printf("    Blocks: ");
+        for (int i = 0; i < blocks_n; i++)
+        {
+            for (int j = 0; j < 8; j++)
+                printf("%c", blocks[i][j]);
+            printf(" ");
+        }
+        printf("\n");
     }
     else
     {
@@ -284,6 +353,80 @@ void decrypt(char **blocks, int blocks_n, char **keys, char *mode)
     }
     else if (strcmp(mode, "CBC") == 0)
     {
+        printf("  Whitening:\n  ----\n");
+
+        char key[8];
+        printf("    Key:    ");
+        for (int j = 0; j < 8; j++)
+        {
+            key[j] = keys[4][j];
+            printf("%c", key[j]);
+        }
+        printf("\n");
+
+        for (int i = 0; i < blocks_n; i++)
+        {
+            char block[8];
+            for (int j = 0; j < 8; j++)
+                block[j] = blocks[i][j];
+            char key[8];
+            for (int j = 0; j < 8; j++)
+                key[j] = keys[4][j];
+            mix(block, key);
+            for (int j = 0; j < 8; j++)
+                blocks[i][j] = block[j];
+        }
+
+        printf("    Blocks: ");
+        for (int i = 0; i < blocks_n; i++)
+        {
+            for (int j = 0; j < 8; j++)
+                printf("%c", blocks[i][j]);
+            printf(" ");
+        }
+        printf("\n\n");
+
+        for (int k = 3; k >= 0; k--)
+        {
+            printf("  Round %d:\n  ----\n", k + 1);
+
+            char key[8];
+            printf("    Key:    ");
+            for (int j = 0; j < 8; j++)
+            {
+                key[j] = keys[k][j];
+                printf("%c", key[j]);
+            }
+            printf("\n");
+
+            char c_bin[8] = "01101001";
+            for (int i = 0; i < blocks_n; i++)
+            {
+                char block[8];
+                for (int j = 0; j < 8; j++)
+                    block[j] = blocks[i][j];
+                char bin_temp[8];
+                for (int j = 0; j < 8; j++)
+                    bin_temp[j] = block[j];
+                decrypt_block(block, key, k == 3 ? 1 : 0);
+                mix(block, c_bin);
+                for (int j = 0; j < 8; j++)
+                    c_bin[j] = bin_temp[j];
+                for (int j = 0; j < 8; j++)
+                    blocks[i][j] = block[j];
+            }
+
+            printf("    Blocks: ");
+            for (int i = 0; i < blocks_n; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                    printf("%c", blocks[i][j]);
+                printf(" ");
+            }
+            printf("\n");
+            if (k != 3)
+                printf("\n");
+        }
     }
     else
     {
@@ -395,7 +538,9 @@ int main(int argc, char *argv[])
         printf("\n");
     }
 
-    printf("\n========================\n");
+    printf("\n========================================\n");
+    printf("Electronic Code Book mode\n");
+    printf("========================================\n");
 
     for (int i = 0; i < 8; i++)
         p_key_inv[p_key[i] - 1] = i + 1;
@@ -411,6 +556,15 @@ int main(int argc, char *argv[])
         for (int j = 0; j < 8; j++)
             printf("%c", blocks[i][j]);
         printf(" ");
+    }
+    printf("\n  ");
+    for (int i = 0; i < blocks_n; i++)
+    {
+        char binary[8];
+        for (int j = 0; j < 8; j++)
+            binary[j] = blocks[i][j];
+        int n = binary_to_int(binary);
+        printf("  (%3d)  ", n);
     }
     printf("\n");
 
@@ -429,13 +583,65 @@ int main(int argc, char *argv[])
     for (int i = 0; i < blocks_n; i++)
     {
         char binary[8];
-        int_to_binary(s[i], binary);
         for (int j = 0; j < 8; j++)
-        {
-            blocks[i][j] = binary[j];
-        }
-        printf(" %c (%d)  ", s[i], s[i]);
+            binary[j] = blocks[i][j];
+        int n = binary_to_int(binary);
+        printf(" %c (%d)  ", n, n);
     }
+    printf("\n");
+
+    printf("\n========================================\n");
+    printf("Cipher Block Chaining mode\n");
+    printf("========================================\n");
+
+    for (int i = 0; i < 8; i++)
+        p_key_inv[p_key[i] - 1] = i + 1;
+
+    for (int i = 0; i < 16; i++)
+        s_key_inv[s_key[i]] = i;
+
+    printf("\nEncryption:\n");
+    encrypt(blocks, blocks_n, keys, "CBC");
+    printf("\nEncrypted blocks:\n  ");
+    for (int i = 0; i < blocks_n; i++)
+    {
+        for (int j = 0; j < 8; j++)
+            printf("%c", blocks[i][j]);
+        printf(" ");
+    }
+    printf("\n  ");
+    for (int i = 0; i < blocks_n; i++)
+    {
+        char binary[8];
+        for (int j = 0; j < 8; j++)
+            binary[j] = blocks[i][j];
+        int n = binary_to_int(binary);
+        printf("  (%3d)  ", n);
+    }
+    printf("\n");
+
+    printf("\n========================\n");
+
+    printf("\nDecryption:\n");
+    decrypt(blocks, blocks_n, keys, "CBC");
+    printf("\nDecrypted blocks:\n  ");
+    for (int i = 0; i < blocks_n; i++)
+    {
+        for (int j = 0; j < 8; j++)
+            printf("%c", blocks[i][j]);
+        printf(" ");
+    }
+    printf("\n  ");
+    for (int i = 0; i < blocks_n; i++)
+    {
+        char binary[8];
+        for (int j = 0; j < 8; j++)
+            binary[j] = blocks[i][j];
+        int n = binary_to_int(binary);
+        printf(" %c (%d)  ", n, n);
+    }
+    printf("\n");
+
     printf("\n");
 
     for (int i = 0; i < blocks_n; i++)
