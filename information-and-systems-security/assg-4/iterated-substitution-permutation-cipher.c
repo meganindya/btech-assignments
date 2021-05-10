@@ -441,7 +441,7 @@ int main(int argc, char *argv[])
     char k[8];
     printf("\nImplementation of Iterative Substitution Permutation Cipher\n--------\n");
     printf("Enter an ASCII string to encrypt: ");
-    scanf("%s", s);
+    scanf("%[^\n]s", s);
 
     int repeat;
     do
@@ -538,6 +538,8 @@ int main(int argc, char *argv[])
         printf("\n");
     }
 
+    char op_s[blocks_n];
+
     printf("\n========================================\n");
     printf("Electronic Code Book mode\n");
     printf("========================================\n");
@@ -586,9 +588,14 @@ int main(int argc, char *argv[])
         for (int j = 0; j < 8; j++)
             binary[j] = blocks[i][j];
         int n = binary_to_int(binary);
-        printf(" %c (%d)  ", n, n);
+        printf(" %c (%3d) ", n, n);
+        op_s[i] = n;
     }
     printf("\n");
+    printf("\n--------\nDecrypted string: ");
+    for (int i = 0; i < blocks_n; i++)
+        printf("%c", op_s[i]);
+    printf("\n--------\n");
 
     printf("\n========================================\n");
     printf("Cipher Block Chaining mode\n");
@@ -638,9 +645,14 @@ int main(int argc, char *argv[])
         for (int j = 0; j < 8; j++)
             binary[j] = blocks[i][j];
         int n = binary_to_int(binary);
-        printf(" %c (%d)  ", n, n);
+        printf(" %c (%3d) ", n, n);
+        op_s[i] = n;
     }
     printf("\n");
+    printf("\n--------\nDecrypted string: ");
+    for (int i = 0; i < blocks_n; i++)
+        printf("%c", op_s[i]);
+    printf("\n--------\n");
 
     printf("\n");
 
