@@ -43,7 +43,8 @@
    a second pass of histogram equalization will produce exactly the same result as the first pass.
 
 8. Write a Program to implement additive noise corruption of an image by manipulating `p%` randomly
-   selected pixel values by an amount of `q%` (q may be fixed or random) for respective gray values.
+   selected pixel values by an amount of `q%` (may be a rand function from `0%` to `15%`) for
+   respective gray values.
 
 9. Do the image averaging operation for `K = 8, 16, 32` number images (changing the value of `p` and
    `q`) and find the difference between the original and averaged image.
